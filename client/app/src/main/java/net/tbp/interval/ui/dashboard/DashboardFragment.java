@@ -1,7 +1,6 @@
 package net.tbp.interval.ui.dashboard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,41 +13,31 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.interval.R;
 import com.example.interval.databinding.FragmentDashboardBinding;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-
-public class DashboardFragment extends Fragment {
-
+public class DashboardFragment extends Fragment  {
+    private List<Reminder> reminderList = new ArrayList<>();
     private DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter myAdapter;
+    private  RecyclerView.LayoutManager layoutManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // textView
         final TextView saveStatus = root.findViewById(R.id.saveStatus);
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -56,6 +45,50 @@ public class DashboardFragment extends Fragment {
                 saveStatus.setText(s);
             }
         });
+
+        // recyclerView
+        recyclerView = (RecyclerView) root.findViewById(R.id.reminderRecyclerView);
+        // Use this setting to improve performance when knowing that change
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+        // Use linear layout manager
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        // giraffe
+        String giraffeDescription = "Write Rust as parser";
+        Reminder reminder = new Reminder(1,"HW CS152", giraffeDescription, false);
+        reminderList.add(reminder);
+
+        // rhino
+        String rhinoDescription = "Write essay 3-5 pages";
+        reminder = new Reminder(2,"Essay NUF163", rhinoDescription, false );
+        reminderList.add(reminder);
+
+        // sloth
+        String slothDescription = "Work on the reminder. Need to finish it!!";
+        reminder = new Reminder(3,"Proj CS160", slothDescription, false);
+        reminderList.add(reminder);
+
+        // wolf
+        String wolfDescription = "Tell the work progress";
+        reminder = new Reminder(4,"Update proj CS160", wolfDescription, false);
+        reminderList.add(reminder);
+
+        // zebra
+        String zebraDescription = "Buy milk for morning coffee :)";
+        reminder = new Reminder( 5,"Buy milk",zebraDescription, false);
+        reminderList.add(reminder);
+
+        myAdapter = new ReminderRecyclerViewAdapter(getContext(), reminderList);
+        recyclerView.setAdapter(myAdapter);
+
+
+
+
+
+
+
+
 
         // task dashboard init
         final Button taskSaveButton = root.findViewById(R.id.saveButton);
