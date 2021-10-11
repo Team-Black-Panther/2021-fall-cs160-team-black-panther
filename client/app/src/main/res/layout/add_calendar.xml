@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="333dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:background="@color/light_grey"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="  Add Title"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="86dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="350dp"
+        android:layout_height="120dp"
+        android:background="@color/light_grey"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="  Description"
+        android:textColor="@color/med_grey"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="173dp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="511dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:background="@color/light_grey"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="  00:00 AM"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="539dp" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="243dp"
+        tools:layout_editor_absoluteY="511dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName6"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:background="@color/light_grey"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="  00:00 AM"
+        tools:layout_editor_absoluteX="243dp"
+        tools:layout_editor_absoluteY="539dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
