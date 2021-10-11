@@ -10,26 +10,36 @@
         android:id="@+id/saveNewReminerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:background="@color/primaryColor"
+        android:bottomLeftRadius="50dp"
+        android:bottomRightRadius="50dp"
         android:text="Save"
+        android:topLeftRadius="50dp"
+        android:topRightRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="14dp" />
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
         android:id="@+id/cancleAddNewReminderBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:background="@color/primaryColor"
         android:text="X"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="18dp" />
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="350dp"
         android:layout_height="50dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Add reminder"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="82dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
