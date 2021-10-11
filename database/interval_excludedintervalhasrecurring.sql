@@ -16,32 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `excludedintervalhasrecurring`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `excludedintervalhasrecurring`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `userID` int unsigned NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(45) NOT NULL,
-  `lastName` varchar(45) NOT NULL,
-  `username` varchar(45) NOT NULL,
-  `passhash` varchar(45) NOT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `phoneNumber` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `excludedintervalhasrecurring` (
+  `excludedIntervalID` int unsigned NOT NULL,
+  `recurringID` int unsigned NOT NULL,
+  KEY `excludedIntervalID_pk_2_idx` (`excludedIntervalID`),
+  KEY `recurringID_pk_2_idx` (`recurringID`),
+  CONSTRAINT `excludedIntervalID_pk_2` FOREIGN KEY (`excludedIntervalID`) REFERENCES `excludedinterval` (`excludedIntervalID`),
+  CONSTRAINT `recurringID_pk_2` FOREIGN KEY (`recurringID`) REFERENCES `recurring` (`recurringID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `excludedintervalhasrecurring`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Tisha','Dorinda','tishd','jjwHHwsy','tisha.dorinda@gmail.com','803-634-0215'),(2,'Pamela','Bud','pam1','vG8WQQVv','pam1992@yahoo.com','434-368-2450'),(3,'Cailyn','Harve','cailynh','f8SZ2VU3','charve3@gmail.com','891-818-2134'),(4,'Allen','Nikolas','nikolasa','ZWqWgmqv','allennikolas@att.net','412-747-0046'),(5,'Lark','Arron','lark','aXyV3u4w','lark.arron@icloud.com','702-985-3059'),(6,'Jimmy','Esmee','jimesmee','7mS5DMdV','jim7291@sbcglobal.net','438-864-6355'),(7,'Anastasia','Zander','zandaa','XyZneKav','anastasia.z8@gmail.com','409-403-1432'),(8,'Terrence','Gil','terrence3','we9z5GrQ','terrence4gil@yahoo.com','213-273-7006'),(9,'Lavena','Maci','lavenarose','sfNuMymV','maci12lavena@icloud.com','223-895-1655'),(10,'Luke','Fredrick','luke6f','pz4LS98m','luke.fredrick@gmail.com','589-255-8911');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `excludedintervalhasrecurring` WRITE;
+/*!40000 ALTER TABLE `excludedintervalhasrecurring` DISABLE KEYS */;
+/*!40000 ALTER TABLE `excludedintervalhasrecurring` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
