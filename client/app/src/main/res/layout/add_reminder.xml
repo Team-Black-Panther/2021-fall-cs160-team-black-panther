@@ -18,7 +18,8 @@
         android:topLeftRadius="50dp"
         android:topRightRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        android:theme="@style/roundBtn"/>
 
     <Button
         android:id="@+id/cancleAddNewReminderBtn"
@@ -28,7 +29,8 @@
         android:background="@color/primaryColor"
         android:text="X"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        android:theme="@style/roundBtn"/>
 
     <EditText
         android:id="@+id/editTextTextPersonName"

@@ -39,7 +39,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:topLeftRadius="150dp"
         android:topRightRadius="150dp"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/roundBtn"/>
 
     <EditText
         android:id="@+id/taskName"

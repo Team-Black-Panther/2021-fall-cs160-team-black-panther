@@ -33,4 +33,12 @@
         <item name="android:statusBarColor">@color/transpalentColor</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="roundBtn" parent="Widget.MaterialComponents.Button">
+        <item name="cornerSizeTopRight">50dp</item>
+        <item name="cornerSizeBottomRight">50dp</item>
+        <item name="cornerSizeTopLeft">50dp</item>
+        <item name="cornerSizeBottomLeft">50dp</item>
+
+    </style>
 </resources>
