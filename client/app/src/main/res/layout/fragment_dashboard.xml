@@ -37,6 +37,8 @@
         android:layout_marginBottom="60dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:topLeftRadius="150dp"
+        android:topRightRadius="150dp"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
