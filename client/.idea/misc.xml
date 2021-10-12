@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/add_calendar.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/add_reminder.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/fragment_dashboard.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/fragment_home.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/fragment_notifications.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/notification.xml" value="0.28306159420289856" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/reminder_row_layout.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/sign_in.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/sign_in_and_sign_up.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/sign_up.xml" value="0.2" />
+        <entry key="..\:/Android/workspace/2021-fall-cs160-team-black-panther/client/app/src/main/res/layout/welcome.xml" value="0.20520833333333333" />
         <entry key="..\:/Android/workspace/2021-spring-cs160-BlackPanther-master/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android/workspace/2021-spring-cs160-BlackPanther-master/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android/workspace/2021-spring-cs160-BlackPanther-master/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.28541666666666665" />

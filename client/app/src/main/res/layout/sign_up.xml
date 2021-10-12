@@ -49,7 +49,7 @@
         tools:layout_editor_absoluteY="183dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextTextPersonName1"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:background="@color/light_grey"
@@ -91,7 +91,7 @@
         tools:layout_editor_absoluteY="375dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextTextPersonName3"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:background="@color/light_grey"
@@ -114,12 +114,12 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="200"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#D0E8EF"
         android:text="Submit"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="578dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

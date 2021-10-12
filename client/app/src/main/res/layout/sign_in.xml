@@ -82,13 +82,13 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="200"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#D0E8EF"
         android:text="Submit"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="545dp" />
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="549dp" />
 
     <TextView
         android:id="@+id/textView4"
