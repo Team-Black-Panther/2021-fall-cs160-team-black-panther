@@ -1,4 +1,4 @@
-package net.tbp.interval.ui.Tracker;
+package net.tbp.interval.ui.tracker;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

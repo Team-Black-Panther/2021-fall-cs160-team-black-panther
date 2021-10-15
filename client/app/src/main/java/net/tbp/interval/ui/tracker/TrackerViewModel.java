@@ -1,4 +1,4 @@
-package net.tbp.interval.ui.Tracker;
+package net.tbp.interval.ui.tracker;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
