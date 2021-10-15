@@ -2,6 +2,8 @@ package net.tbp.interval.ui.reminder;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -37,6 +39,8 @@ public class ReminderFragment extends Fragment  {
 
         binding = FragmentReminderBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        setHasOptionsMenu(true);
 
         // textView
         reminderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -98,6 +102,14 @@ public class ReminderFragment extends Fragment  {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    // add button in the action bar
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu items for use in the action bar
+        inflater.inflate(R.menu.reminder_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
 
