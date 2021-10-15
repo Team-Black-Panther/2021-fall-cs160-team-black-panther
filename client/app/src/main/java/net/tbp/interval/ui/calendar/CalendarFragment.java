@@ -1,4 +1,4 @@
-    package net.tbp.interval.ui.home;
+    package net.tbp.interval.ui.calendar;
 
     import android.app.Activity;
     import android.os.Bundle;
@@ -22,23 +22,23 @@
     import com.android.volley.toolbox.StringRequest;
     import com.android.volley.toolbox.Volley;
     import com.example.interval.R;
-    import com.example.interval.databinding.FragmentHomeBinding;
+    import com.example.interval.databinding.FragmentCalendarBinding;
 
-    public class HomeFragment extends Fragment {
+    public class CalendarFragment extends Fragment {
 
-        private HomeViewModel homeViewModel;
-        private FragmentHomeBinding binding;
+        private CalendarViewModel calendarViewModel;
+        private FragmentCalendarBinding binding;
 
         public View onCreateView(@NonNull LayoutInflater inflater,
                                  ViewGroup container, Bundle savedInstanceState) {
-            homeViewModel =
-                    new ViewModelProvider(this).get(HomeViewModel.class);
+            calendarViewModel =
+                    new ViewModelProvider(this).get(CalendarViewModel.class);
 
-            binding = FragmentHomeBinding.inflate(inflater, container, false);
+            binding = FragmentCalendarBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
 
             final TextView textView = binding.textHome;
-            homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
                 @Override
                 public void onChanged(@Nullable String s) {
                     textView.setText(s);
