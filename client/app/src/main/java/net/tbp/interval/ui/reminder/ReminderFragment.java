@@ -39,11 +39,9 @@ public class ReminderFragment extends Fragment  {
         View root = binding.getRoot();
 
         // textView
-        final TextView saveStatus = root.findViewById(R.id.saveStatus);
         reminderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                saveStatus.setText(s);
             }
         });
 
@@ -91,39 +89,7 @@ public class ReminderFragment extends Fragment  {
 
 
 
-        // task dashboard init
-        final Button taskSaveButton = root.findViewById(R.id.saveButton);
-        taskSaveButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                EditText taskNameET = (EditText) root.findViewById(R.id.taskName);
-                String taskName = taskNameET.getText().toString();
 
-//                RequestQueue queue = Volley.newRequestQueue(getActivity());
-//                String url ="http://192.168.0.42:8080/test/add";
-//                StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        System.out.println(response);
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError e) {
-//                        e.printStackTrace();
-//                    }
-//                }) {
-//                    @Override
-//                    protected Map<String, String> getParams() {
-//                        Map<String, String> params = new HashMap<String, String>();
-//                        params.put("name", taskName);
-//                        return params;
-//                    }
-//                };
-//
-//                System.out.println(request.toString());
-//                queue.add(request);
-//                taskNameET.getText().clear();
-            }
-        }) ;
 
         return root;
     }
