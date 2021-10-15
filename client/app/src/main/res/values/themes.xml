@@ -39,6 +39,15 @@
         <item name="cornerSizeBottomRight">50dp</item>
         <item name="cornerSizeTopLeft">50dp</item>
         <item name="cornerSizeBottomLeft">50dp</item>
-
     </style>
+
+<!--    use for create top navbar with setting list-->
+    <style name="Theme.Interval.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Interval.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Interval.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
