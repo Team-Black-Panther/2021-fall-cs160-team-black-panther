@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_calendar">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_calendar"
         android:name="net.tbp.interval.ui.calendar.CalendarFragment"
         android:label="@string/title_calendar"
         tools:layout="@layout/fragment_calendar" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_reminder"
         android:name="net.tbp.interval.ui.reminder.ReminderFragment"
         android:label="@string/title_reminder"
         tools:layout="@layout/fragment_reminder" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="net.tbp.interval.ui.tracker.TrackersFragment"
+        android:id="@+id/navigation_tracker"
+        android:name="net.tbp.interval.ui.tracker.TrackerFragment"
         android:label="@string/title_tracker"
         tools:layout="@layout/fragment_tracker" />
 </navigation>

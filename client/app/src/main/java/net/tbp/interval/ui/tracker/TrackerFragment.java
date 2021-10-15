@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.interval.databinding.FragmentTrackerBinding;
 
-public class TrackersFragment extends Fragment {
+public class TrackerFragment extends Fragment {
 
     private TrackerViewModel trackerViewModel;
     private FragmentTrackerBinding binding;
