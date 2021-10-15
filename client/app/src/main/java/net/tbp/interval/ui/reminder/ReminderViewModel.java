@@ -1,20 +1,14 @@
-package net.tbp.interval.ui.dashboard;
+package net.tbp.interval.ui.reminder;
 
-import android.view.Menu;
-import android.view.MenuInflater;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.interval.R;
-
-public class DashboardViewModel extends ViewModel{
+public class ReminderViewModel extends ViewModel{
 
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public ReminderViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("");
     }

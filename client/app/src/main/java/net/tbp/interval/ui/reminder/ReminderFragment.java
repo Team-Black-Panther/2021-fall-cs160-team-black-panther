@@ -1,4 +1,4 @@
-package net.tbp.interval.ui.dashboard;
+package net.tbp.interval.ui.reminder;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,29 +17,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interval.R;
-import com.example.interval.databinding.FragmentDashboardBinding;
+import com.example.interval.databinding.FragmentReminderBinding;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashboardFragment extends Fragment  {
+public class ReminderFragment extends Fragment  {
     private List<Reminder> reminderList = new ArrayList<>();
-    private DashboardViewModel dashboardViewModel;
-    private FragmentDashboardBinding binding;
+    private ReminderViewModel reminderViewModel;
+    private FragmentReminderBinding binding;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter myAdapter;
     private  RecyclerView.LayoutManager layoutManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentReminderBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // textView
         final TextView saveStatus = root.findViewById(R.id.saveStatus);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        reminderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 saveStatus.setText(s);

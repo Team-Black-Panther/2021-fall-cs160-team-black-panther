@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.tbp.interval.ui.dashboard.DashboardFragment"
+    tools:context="net.tbp.interval.ui.reminder.ReminderFragment"
     android:background="@color/white">
 
     <androidx.recyclerview.widget.RecyclerView

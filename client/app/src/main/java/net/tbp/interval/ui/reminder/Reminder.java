@@ -1,4 +1,4 @@
-package net.tbp.interval.ui.dashboard;
+package net.tbp.interval.ui.reminder;
 
 public class Reminder {
     private String title;
