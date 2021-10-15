@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="net.tbp.interval.ui.notifications.NotificationsFragment"
+        android:name="net.tbp.interval.ui.Tracker.TrackersFragment"
         android:label="@string/title_tracker"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_tracker" />
 </navigation>
