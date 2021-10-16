@@ -14,7 +14,7 @@
             android:title="Add account" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:icon="@drawable/ic_baseline_email_24dp"
+            android:title="............." />
     </group>
 </menu>

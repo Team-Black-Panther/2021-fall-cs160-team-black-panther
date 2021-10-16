@@ -5,19 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="331db118-b828-44c9-b62b-e93cd959ee3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/app/src/main/res/drawable/ic_baseline_email_24dp.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/calendar/CalendarFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/calendar/CalendarFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/gallery/GalleryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/gallery/NewaccountFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/gallery/GalleryViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/gallery/NewaccountViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/backup/BackupFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/home/HomeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/backup/BackupViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/drawable/ic_menu_gallery.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/drawable/ic_menu_account.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/layout/fragment_gallery.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/layout/fragment_newaaccount.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/layout/fragment_backup.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/drawable/side_nav_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/drawable/side_nav_bar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/layout/nav_header_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/layout/nav_header_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app/src/main/res/menu/activity_main_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/menu/activity_main_drawer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

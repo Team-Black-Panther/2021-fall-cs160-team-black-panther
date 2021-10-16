@@ -9,8 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_grey">#FFA6A6A6</color>
     <color name="med_grey">#FF323232</color>
-    <color name="primaryColor">#FFD0E8EF</color>
+    <color name="primaryColor">#7B88FF</color>
     <color name="transpalentColor">#0000ffff</color>
     <color name="bottom_nav">#FFC4C4C4</color>
+    <color name="colorAccent">#525252</color>
 
 </resources>
