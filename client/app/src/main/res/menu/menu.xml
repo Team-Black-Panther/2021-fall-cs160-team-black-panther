@@ -13,6 +13,4 @@
         android:title="Unistall"
         app:showAsAction="never" />
 
-
-
 </menu>

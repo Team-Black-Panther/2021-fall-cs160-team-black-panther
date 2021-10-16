@@ -17,6 +17,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <!--the style for splash screen-->
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:windowBackground">@drawable/splash_image</item>
@@ -41,7 +42,7 @@
         <item name="cornerSizeBottomLeft">50dp</item>
     </style>
 
-<!--    use for create top navbar with setting list-->
+    <!-- use for create top navbar with setting list-->
     <style name="Theme.Interval.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
