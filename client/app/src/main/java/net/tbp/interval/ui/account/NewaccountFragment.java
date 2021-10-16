@@ -1,4 +1,4 @@
-package net.tbp.interval.ui.home;
+package net.tbp.interval.ui.account;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,23 +12,24 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.interval.databinding.FragmentHomeBinding;
+import com.example.interval.databinding.FragmentNewaccountBinding;
 
-public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+public class NewaccountFragment extends Fragment {
+
+    private NewaccountViewModel newaccountViewModel;
+    private FragmentNewaccountBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        newaccountViewModel =
+                new ViewModelProvider(this).get(NewaccountViewModel.class);
 
-        binding = binding.inflate(inflater, container, false);
+        binding = FragmentNewaccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textGallery;
+        newaccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

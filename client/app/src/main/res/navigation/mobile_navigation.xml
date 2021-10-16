@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_tracker" />
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="net.tbp.interval.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_backup"
+        android:name="net.tbp.interval.ui.backup.BackupFragment"
+        android:label="Backup"
+        tools:layout="@layout/fragment_backup" />
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -36,9 +36,9 @@
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="net.tbp.interval.ui.gallery.GalleryFragment"
+        android:name="net.tbp.interval.ui.account.NewaccountFragment"
         android:label="SlideshowFragment"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_newaccount" />
 
 
 
