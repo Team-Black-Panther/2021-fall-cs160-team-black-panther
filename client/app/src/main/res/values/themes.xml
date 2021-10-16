@@ -51,7 +51,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Interval.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Interval.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.Interval.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
