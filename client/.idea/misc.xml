@@ -33,8 +33,10 @@
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.19047619047619047" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_newaaccount.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_newaccount.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/layout/fragment_reminder.xml" value="0.26979166666666665" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_tracker.xml" value="0.26979166666666665" />
         <entry key="app/src/main/res/layout/gallery_layout.xml" value="0.2713541666666667" />
         <entry key="app/src/main/res/layout/information_layout.xml" value="0.2713541666666667" />
@@ -45,6 +47,7 @@
         <entry key="app/src/main/res/layout/reminder_row_layout.xml" value="0.2713541666666667" />
         <entry key="app/src/main/res/layout/row_layout.xml" value="0.2713541666666667" />
         <entry key="app/src/main/res/layout/sign_in.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/sign_in_and_sign_up.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/sign_up.xml" value="0.1" />
         <entry key="app/src/main/res/layout/welcome.xml" value="0.5" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
