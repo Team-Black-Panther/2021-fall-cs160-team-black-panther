@@ -2,6 +2,7 @@ package net.tbp.interval.backup;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,11 +18,22 @@ import javax.persistence.Id;
 public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	// TODO: make sure this works with our current tables
 	private Integer id;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "location")
 	private String location;
+	
+	@Column(name = "category")
 	private String category;
+	
+	@Column(name = "alarm")
 	private String alarm;
 
 	// date-time format: 2011-12-03T10:15:30+01:00

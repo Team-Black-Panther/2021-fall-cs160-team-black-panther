@@ -1,9 +1,11 @@
 package net.tbp.interval.backup;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Class for encapsulating a singlar user profile.
@@ -12,15 +14,31 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@Table(name = "user")
 public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	// TODO: make sure this works with our current tables
 	private Integer id;
-	String firstName, lastName;
+	
+	@Column(name = "firstName")
+	String firstName;
+	
+	@Column(name = "lastName")
+	String lastName;
+	
+	@Column(name = "username")
 	String userName;
+	
+	@Column(name = "passhash")
 	String passhash;
+	
+	@Column(name = "email")
 	String email;
-
+	
+	@Column(name = "phoneNumber")
+	String phoneNumber;
+	
 	/**
 	 * @return the id
 	 */
@@ -118,7 +136,5 @@ public class UserProfile {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
-	String phoneNumber;
 
 }
