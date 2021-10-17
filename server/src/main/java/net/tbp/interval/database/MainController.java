@@ -32,7 +32,7 @@ public class MainController {
 	private UserRepository userRepo;
 
 	// Basic User Management
-	
+
 	@GetMapping(path = "/{username}")
 	public @ResponseBody Integer getUID(@PathVariable String username) {
 		for (UserProfile p : userRepo.findAll()) {
@@ -72,26 +72,26 @@ public class MainController {
 
 	@GetMapping(path = "/{uid}/currentevent")
 	public @ResponseBody Iterable<Event> getAllCurrentEvents(@PathVariable Integer uid) {
-		return currentEventRepo.findAll();
+		return currentEventRepo.findAllCurrentEvents(uid);
 	}
 
 	@PostMapping(path = "/{uid}/currentevent")
 	public @ResponseBody Event addNewCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid) {
-		currentEventRepo.save(newEvent);
+		currentEventRepo.addNewCurrentEvent(uid, newEvent);
 		return newEvent;
 	}
 
 	@PutMapping(path = "/{uid}/currentevent/{eventid}")
-	public @ResponseBody Event deleteCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid,
+	public @ResponseBody Event updateCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid,
 			@PathVariable Integer eventid) {
 		// perhaps slower than overwriting attributes?
-		currentEventRepo.deleteById(eventid);
-		currentEventRepo.save(newEvent);
+		currentEventRepo.deleteCurrentEvent(uid, eventid);
+		currentEventRepo.addNewCurrentEvent(uid, newEvent);
 		return newEvent;
 	}
 
 	@DeleteMapping(path = "/{uid}/currentevent/{eventid}")
 	public @ResponseBody void deleteCurrentEvent(@PathVariable Integer uid, @PathVariable Integer eventid) {
-		currentEventRepo.deleteById(eventid);
+		currentEventRepo.deleteCurrentEvent(uid, eventid);
 	}
 }
