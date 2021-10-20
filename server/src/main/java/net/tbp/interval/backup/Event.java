@@ -1,6 +1,7 @@
 package net.tbp.interval.backup;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,24 +21,52 @@ public class Event {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	// TODO: make sure this works with our current tables
 	private Integer id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "location")
 	private String location;
-	
+
 	@Column(name = "category")
 	private String category;
-	
+
 	@Column(name = "alarm")
 	private String alarm;
 
 	// date-time format: 2011-12-03T10:15:30+01:00
 	private LocalDateTime startTime, endTime;
+
+	public Event() {
+		this(0, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR", null, null);
+	}
+
+	/**
+	 * All arg constructor.
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param location
+	 * @param category
+	 * @param alarm
+	 * @param startTime
+	 * @param endTime
+	 */
+	public Event(Integer id, String name, String description, String location, String category, String alarm,
+			LocalDateTime startTime, LocalDateTime endTime) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.location = location;
+		this.category = category;
+		this.alarm = alarm;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
 
 	/**
 	 * @return the id
@@ -151,6 +180,24 @@ public class Event {
 		this.endTime = endTime;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(alarm, category, description, endTime, id, location, name, startTime);
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Event other = (Event) obj;
+		return Objects.equals(alarm, other.alarm) && Objects.equals(category, other.category)
+				&& Objects.equals(description, other.description) && Objects.equals(endTime, other.endTime)
+				&& Objects.equals(id, other.id) && Objects.equals(location, other.location)
+				&& Objects.equals(name, other.name) && Objects.equals(startTime, other.startTime);
+	}
 
 }
