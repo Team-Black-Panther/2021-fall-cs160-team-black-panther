@@ -1,13 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+    <!-- The default theme in this app will set to the light, so the user will see text in black color -->
     <style name="Theme.Interval" parent="Theme.MaterialComponents.Light">
         <!-- Primary brand color. -->
         <!-- the top nav bar of the app-->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- the toppest of the app-->
+        <!-- the top of the app-->
         <item name="colorPrimaryVariant">@color/black</item>
+        <!-- the text color in app-->
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -30,6 +32,7 @@
         <item name="android:statusBarColor">@color/transpalentColor</item>
     </style>
 
+    <!--the style for set the action bar manu to have the burger list that will use to set setting, backup, change account-->
     <style name="nothing" parent="Theme.MaterialComponents.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -38,6 +41,7 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--the style for set edge of button to round-->
     <style name="roundBtn" parent="Widget.MaterialComponents.Button">
         <item name="cornerSizeTopRight">50dp</item>
         <item name="cornerSizeBottomRight">50dp</item>
@@ -45,12 +49,13 @@
         <item name="cornerSizeBottomLeft">50dp</item>
     </style>
 
-    <!-- use for create top navbar with setting list-->
+    <!--the style for set the action bar menu to have the burger list that will use to set setting, backup, change account-->
     <style name="Theme.Interval.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- use for create top navbar with setting list-->
     <style name="Theme.Interval.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.Interval.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
