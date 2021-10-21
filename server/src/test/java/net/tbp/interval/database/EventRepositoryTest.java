@@ -58,19 +58,19 @@ public class EventRepositoryTest {
 
 	}
 
-	/*
+	
 	@Test
 	void updateOneEvent() {
 		Event testEvent4 = new Event(3, "Meeting updated", "Team meeting stuff.", "Home", "Schoolwork", "none",
 				LocalDateTime.of(2021, 7, 24, 7, 2), LocalDateTime.of(2021, 7, 24, 8, 2));
-		//eventRepo.updateCurrentEvent(testProfile1.getId(), testEvent3.getId(), testEvent4);
+		eventRepo.updateCurrentEvent(testProfile1.getId(), testEvent3.getId(), testEvent4);
 
 		Optional<Event> targetCheck = eventRepo.findById(3);
 		assertTrue(targetCheck.isPresent());
 		assertEquals(targetCheck.get().getName(), testEvent4.getName());
 
 	}
-	*/
+	
 	
 	@Test
 	void tryDeleteEvent() {
