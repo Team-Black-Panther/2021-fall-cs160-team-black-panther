@@ -32,7 +32,6 @@ public class MainController {
 	private UserRepository userRepo;
 
 	// Basic User Management
-
 	@GetMapping(path = "/{username}")
 	public @ResponseBody Integer getUID(@PathVariable String username) {
 		for (UserProfile p : userRepo.findAll()) {
@@ -84,9 +83,7 @@ public class MainController {
 	@PutMapping(path = "/{uid}/currentevent/{eventid}")
 	public @ResponseBody Event updateCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid,
 			@PathVariable Integer eventid) {
-		// perhaps slower than overwriting attributes?
-		currentEventRepo.deleteCurrentEvent(uid, eventid);
-		currentEventRepo.addNewCurrentEvent(uid, newEvent);
+		currentEventRepo.updateCurrentEvent(uid, eventid, newEvent);
 		return newEvent;
 	}
 
