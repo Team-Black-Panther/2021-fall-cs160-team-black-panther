@@ -43,11 +43,11 @@ public class MainController {
 	}
 
 	@PostMapping(path = "/{username}")
-	public @ResponseBody String allocateUIDToUser(@PathVariable String username) {
+	public @ResponseBody Integer allocateUIDToUser(@PathVariable String username) {
 		UserProfile newProfile = new UserProfile();
 		newProfile.setUserName(username);
 		userRepo.save(newProfile);
-		return username;
+		return userRepo.findProfileByName(username).getId();
 	}
 
 	@PutMapping(path = "/{uid}")
