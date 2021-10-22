@@ -6,9 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,21 +22,24 @@ import com.example.interval.databinding.FragmentReminderBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+// this class will use to render the reminder page
 public class ReminderFragment extends Fragment  {
-    private List<Reminder> reminderList = new ArrayList<>();
+    private List<Reminder> reminderList = new ArrayList<>();    // list that will store reinder
     private ReminderViewModel reminderViewModel;
     private FragmentReminderBinding binding;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter myAdapter;
-    private  RecyclerView.LayoutManager layoutManager;
+    private RecyclerView recyclerView;                          // recyclerview that create cell to store each reminder
+    private RecyclerView.Adapter myAdapter;                     // will use to render reclerview
+    private  RecyclerView.LayoutManager layoutManager;          // layout of reclerview
 
+    // func to set view when user load page
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
-
         binding = FragmentReminderBinding.inflate(inflater, container, false);
+        // to get root of the binding in this case it will mean fragment_reminder
         View root = binding.getRoot();
 
+        //  set the page to have the option menu to have the add button
         setHasOptionsMenu(true);
 
         // textView
@@ -69,7 +69,7 @@ public class ReminderFragment extends Fragment  {
 
         // sloth
         String slothDescription = "Work on the reminder. Need to finish it!!";
-        reminder = new Reminder(3,"Proj CS160", slothDescription, false);
+        reminder = new Reminder(3,"Proj CS160", slothDescription, true);
         reminderList.add(reminder);
 
         // wolf

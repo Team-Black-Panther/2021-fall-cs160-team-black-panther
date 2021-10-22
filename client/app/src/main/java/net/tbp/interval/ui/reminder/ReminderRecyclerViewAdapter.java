@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,9 @@ import com.example.interval.R;
 
 import java.util.List;
 
+// this class will use to set each component that will show in the reminder recycler cell that have not finish
 public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRecyclerViewAdapter.ViewHolder> {
-    private static final String TAG = "ReminderRecyclerViewAdapter";
+    private static final String TAG = "ReminderRecyclerView";        // use to debug
     private List<Reminder> reminderList;
     private Context context;
 
@@ -28,12 +30,14 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
         public TextView title;
         public View layout;
         public boolean isChecked = false;
+        public CheckBox checkBox;
 
         // Construction of ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = itemView;
             title = (TextView) itemView.findViewById(R.id.reminderTitle);
+            checkBox = (CheckBox) itemView.findViewById(R.id.reminderCheckBox);
         }
     }
 
@@ -62,7 +66,15 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
         // Get element from a database at this position
         // replace the contents of view with that element
         Reminder row = reminderList.get(position);
-        holder.title.setText(row.getTitle());
+        boolean reminderStatus = row.getStatus();
+        if(!reminderStatus){
+            Log.d(TAG, "in complete");
+            holder.title.setText(row.getTitle());
+            holder.checkBox.setChecked(row.getStatus());
+        }
+
+
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             // user select a row
             @Override
