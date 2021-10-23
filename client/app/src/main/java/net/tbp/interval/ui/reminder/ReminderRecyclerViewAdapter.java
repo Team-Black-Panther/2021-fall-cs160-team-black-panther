@@ -65,27 +65,37 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Get element from a database at this position
         // replace the contents of view with that element
-        Reminder row = reminderList.get(position);
-        boolean reminderStatus = row.getStatus();
-        if(!reminderStatus){
-            Log.d(TAG, "in complete");
-            holder.title.setText(row.getTitle());
-            holder.checkBox.setChecked(row.getStatus());
-        }
-
-
-
-        holder.layout.setOnClickListener(new View.OnClickListener() {
-            // user select a row
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "select reminder to show: " + (position) + " " + (row.getTitle()));
+        int count = -1;
+        for(int i = 0; i < reminderList.size(); i++){
+            if(!reminderList.get(i).getStatus()){
+                count++;
+                if(count == position){
+                    Reminder row = reminderList.get(position);
+                    Log.d(TAG, "complete: " + position + " : "+i);
+                    holder.title.setText(reminderList.get(i).getTitle());
+                    holder.checkBox.setChecked(reminderList.get(i).getStatus());
+                    holder.layout.setOnClickListener(new View.OnClickListener() {
+                        // user select a row
+                        @Override
+                        public void onClick(View view) {
+                            Log.d(TAG, "select reminder to show: " + (position) + " " + (row.getTitle()));
+                        }
+                    });
+                }
             }
-        });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return reminderList.size();
+        int count = 0;
+        if(reminderList.size() >= 1){
+            for(int i = 0; i < reminderList.size(); i++){
+                if(!reminderList.get(i).getStatus()){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }
