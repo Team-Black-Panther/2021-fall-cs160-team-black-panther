@@ -21,7 +21,6 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     private List<Reminder> reminderList;
     private Context context;
 
-
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // provide access to all the views for a data item in a view holder
@@ -51,7 +50,6 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.reminder_row_layout, parent, false);
 
@@ -66,18 +64,37 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
         // Get element from a database at this position
         // replace the contents of view with that element
         int count = -1;
-        for(int i = 0; i < reminderList.size(); i++){
-            if(!reminderList.get(i).getStatus()){
+        for (int i = 0; i < reminderList.size(); i++) {
+            if (!reminderList.get(i).getStatus()) {
                 count++;
-                if(count == position){
+                if (count == position) {
                     Reminder row = reminderList.get(position);
-                    Log.d(TAG, "complete: " + position + " : "+i);
+                    Log.d(TAG, "complete: " + position + " : " + i);
                     holder.title.setText(reminderList.get(i).getTitle());
                     holder.checkBox.setChecked(reminderList.get(i).getStatus());
+                    Log.d(TAG, "uncheck reminder to show: " + context);
+
+                    int finalCount = i;
+                    holder.checkBox.setOnClickListener(new View.OnClickListener() {
+                        // user select a row
+                        @Override
+                        public void onClick(View view) {
+                            if (holder.checkBox.isChecked()) {
+                                reminderList.get(finalCount).setStatus(true);
+                                Log.d(TAG, "check reminder to show: " + (finalCount) + " ");
+                                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.completedReminderRecyclerView);
+                                notifyDataSetChanged();
+                            }
+                        }
+                    });
+
                     holder.layout.setOnClickListener(new View.OnClickListener() {
                         // user select a row
                         @Override
                         public void onClick(View view) {
+                            if (!holder.checkBox.isChecked()) {
+                                Log.d(TAG, "check reminder to show: " + (position) + " " + (row.getTitle()));
+                            }
                             Log.d(TAG, "select reminder to show: " + (position) + " " + (row.getTitle()));
                         }
                     });
@@ -89,9 +106,9 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     @Override
     public int getItemCount() {
         int count = 0;
-        if(reminderList.size() >= 1){
-            for(int i = 0; i < reminderList.size(); i++){
-                if(!reminderList.get(i).getStatus()){
+        if (reminderList.size() >= 1) {
+            for (int i = 0; i < reminderList.size(); i++) {
+                if (!reminderList.get(i).getStatus()) {
                     count++;
                 }
             }
