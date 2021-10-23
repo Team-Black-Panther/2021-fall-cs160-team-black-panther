@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.3015625" />
         <entry key="..\:/Android/workspace/2021-spring-cs160-BlackPanther-master/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android/workspace/2021-spring-cs160-BlackPanther-master/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android/workspace/2021-spring-cs160-BlackPanther-master/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.28541666666666665" />
@@ -25,6 +26,7 @@
         <entry key="app/src/main/res/layout/add_calendar.xml" value="0.26979166666666665" />
         <entry key="app/src/main/res/layout/add_reminder.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/completed_reminder_row_layout.xml" value="0.259375" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout/fragment_addnewaccount.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_backup.xml" value="0.1" />

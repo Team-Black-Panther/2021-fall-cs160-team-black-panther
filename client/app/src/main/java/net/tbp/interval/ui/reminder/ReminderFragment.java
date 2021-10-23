@@ -29,7 +29,10 @@ public class ReminderFragment extends Fragment  {
     private FragmentReminderBinding binding;
     private RecyclerView recyclerView;                          // recyclerview that create cell to store each reminder
     private RecyclerView.Adapter myAdapter;                     // will use to render reclerview
-    private  RecyclerView.LayoutManager layoutManager;          // layout of reclerview
+    private RecyclerView.LayoutManager layoutManager;          // layout of reclerview
+    private RecyclerView completedRecyclerView;                          // recyclerview that create cell to store each reminder
+    private RecyclerView.Adapter completedMyAdapter;                     // will use to render reclerview
+    private RecyclerView.LayoutManager completedLayoutManager;
 
     // func to set view when user load page
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,6 +60,17 @@ public class ReminderFragment extends Fragment  {
         // Use linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+
+        // completeRecyclerView
+        completedRecyclerView = (RecyclerView) root.findViewById(R.id.completedReminderRecyclerView);
+        // Use this setting to improve performance when knowing that change
+        // in content do not change the layout size of the RecyclerView
+        completedRecyclerView.setHasFixedSize(true);
+        // Use linear layout manager
+        completedLayoutManager = new LinearLayoutManager(getContext());
+        completedRecyclerView.setLayoutManager(completedLayoutManager);
+
+
         // giraffe
         String giraffeDescription = "Write Rust as parser";
         Reminder reminder = new Reminder(1,"HW CS152", giraffeDescription, false);
@@ -74,7 +88,7 @@ public class ReminderFragment extends Fragment  {
 
         // wolf
         String wolfDescription = "Tell the work progress";
-        reminder = new Reminder(4,"Update proj CS160", wolfDescription, false);
+        reminder = new Reminder(4,"Update proj CS160", wolfDescription, true);
         reminderList.add(reminder);
 
         // zebra
@@ -84,6 +98,9 @@ public class ReminderFragment extends Fragment  {
 
         myAdapter = new ReminderRecyclerViewAdapter(getContext(), reminderList);
         recyclerView.setAdapter(myAdapter);
+
+        completedMyAdapter = new CompletedReminderRecyclerViewAdapter(getContext(), reminderList);
+        completedRecyclerView.setAdapter(completedMyAdapter);
 
 
 
