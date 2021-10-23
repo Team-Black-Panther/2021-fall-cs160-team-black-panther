@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:padding="6dip">
+
+    <TextView
+        android:id="@+id/completed_reminderTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/completed_reminderCheckBox"
+        android:gravity="center_vertical"
+        android:text="complete_reminder"
+        android:textColor="@color/light_grey"
+        android:textSize="18dp" />
+
+    <CheckBox
+        android:id="@+id/completed_reminderCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:minWidth="40dp"
+        android:minHeight="40dp"
+        android:text="" />
+</RelativeLayout>
