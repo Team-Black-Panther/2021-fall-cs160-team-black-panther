@@ -15,12 +15,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interval.R;
 import com.example.interval.databinding.FragmentReminderBinding;
+
+import net.tbp.interval.MainActivity;
 
 import java.util.List;
 
@@ -81,7 +84,7 @@ public class CompletedReminderRecyclerViewAdapter extends RecyclerView.Adapter<C
                     Log.d(TAG, "complete: " + position + " : "+i);
                     holder.title.setText(reminderList.get(i).getTitle());
                     holder.checkBox.setChecked(reminderList.get(i).getStatus());
-
+                    Log.d(TAG, "check reminder to show: " + context);
                     int finalCount = i;
                     holder.checkBox.setOnClickListener(new View.OnClickListener() {
                         // user select a row
@@ -89,12 +92,10 @@ public class CompletedReminderRecyclerViewAdapter extends RecyclerView.Adapter<C
                         public void onClick(View view) {
                             if(!holder.checkBox.isChecked()){
                                 reminderList.get(finalCount).setStatus(false);
-                                Log.d(TAG, "check reminder to show: " + (finalCount) + " ");
-
+                                Log.d(TAG, "check reminder to show: " + (finalCount) + " : "+ context);
                                 RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.reminderRecyclerView);
-
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
                                 notifyDataSetChanged();
-                                view.invalidate();
                             }
                         }
                     });
