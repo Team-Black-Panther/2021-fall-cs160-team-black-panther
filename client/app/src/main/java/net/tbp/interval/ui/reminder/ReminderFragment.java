@@ -1,19 +1,27 @@
 package net.tbp.interval.ui.reminder;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.interval.R;
 import com.example.interval.databinding.FragmentReminderBinding;
@@ -24,15 +32,16 @@ import java.util.List;
 
 // this class will use to render the reminder page
 public class ReminderFragment extends Fragment  {
-    private List<Reminder> reminderList = new ArrayList<>();    // list that will store reinder
+    private List<Reminder> reminderList = new ArrayList<>();        // list that will store reinder
     private ReminderViewModel reminderViewModel;
     private FragmentReminderBinding binding;
-    private RecyclerView recyclerView;                          // recyclerview that create cell to store each reminder
-    private RecyclerView.Adapter myAdapter;                     // will use to render reclerview
-    private RecyclerView.LayoutManager layoutManager;          // layout of reclerview
-    private RecyclerView completedRecyclerView;                          // recyclerview that create cell to store each reminder
-    private RecyclerView.Adapter completedMyAdapter;                     // will use to render reclerview
+    private RecyclerView recyclerView;                              // recyclerview that create cell to store each reminder
+    private RecyclerView.Adapter myAdapter;                         // will use to render reclerview
+    private RecyclerView.LayoutManager layoutManager;               // layout of reclerview
+    private RecyclerView completedRecyclerView;                     // recyclerview that create cell to store each reminder
+    private RecyclerView.Adapter completedMyAdapter;                // will use to render reclerview
     private RecyclerView.LayoutManager completedLayoutManager;
+    private FragmentActivity myContext;
 
     // func to set view when user load page
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -70,30 +79,24 @@ public class ReminderFragment extends Fragment  {
         completedLayoutManager = new LinearLayoutManager(getContext());
         completedRecyclerView.setLayoutManager(completedLayoutManager);
 
-
-        // giraffe
-        String giraffeDescription = "Write Rust as parser";
-        Reminder reminder = new Reminder(1,"HW CS152", giraffeDescription, false);
+        String task1 = "Write Rust as parser";
+        Reminder reminder = new Reminder(1,"HW CS152", task1, false);
         reminderList.add(reminder);
 
-        // rhino
-        String rhinoDescription = "Write essay 3-5 pages";
-        reminder = new Reminder(2,"Essay NUF163", rhinoDescription, false );
+        String task2 = "Write essay 3-5 pages";
+        reminder = new Reminder(2,"Essay NUF163", task2, false );
         reminderList.add(reminder);
 
-        // sloth
-        String slothDescription = "Work on the reminder. Need to finish it!!";
-        reminder = new Reminder(3,"Proj CS160", slothDescription, true);
+        String task3 = "Work on the reminder. Need to finish it!!";
+        reminder = new Reminder(3,"Proj CS160", task3, true);
         reminderList.add(reminder);
 
-        // wolf
-        String wolfDescription = "Tell the work progress";
-        reminder = new Reminder(4,"Update proj CS160", wolfDescription, true);
+        String task4 = "Tell the work progress";
+        reminder = new Reminder(4,"Update proj CS160", task4, true);
         reminderList.add(reminder);
 
-        // zebra
-        String zebraDescription = "Buy milk for morning coffee :)";
-        reminder = new Reminder( 5,"Buy milk",zebraDescription, false);
+        String task5 = "Buy milk for morning coffee :)";
+        reminder = new Reminder( 5,"Buy milk",task5, false);
         reminderList.add(reminder);
 
         myAdapter = new ReminderRecyclerViewAdapter(getContext(), reminderList);
@@ -101,17 +104,6 @@ public class ReminderFragment extends Fragment  {
 
         completedMyAdapter = new CompletedReminderRecyclerViewAdapter(getContext(), reminderList);
         completedRecyclerView.setAdapter(completedMyAdapter);
-
-
-
-
-
-
-
-
-
-
-
         return root;
     }
 
@@ -119,6 +111,11 @@ public class ReminderFragment extends Fragment  {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     // add button in the action bar
@@ -129,5 +126,14 @@ public class ReminderFragment extends Fragment  {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        Activity a;
+        if (context instanceof Activity){
+            a = (Activity) context;
+        }
+    }
 
 }
