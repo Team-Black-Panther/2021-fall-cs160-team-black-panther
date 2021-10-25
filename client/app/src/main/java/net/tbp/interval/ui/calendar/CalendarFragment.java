@@ -37,47 +37,48 @@
             binding = FragmentCalendarBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
 
-            final TextView textView = binding.textHome;
-            calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-                @Override
-                public void onChanged(@Nullable String s) {
-                    textView.setText(s);
-                }
-            });
+//            final TextView textView = binding.calendar1.textView10.findViewById(R.id.editTextTextPersonName4);
+//            textView.setText();
+//            calendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//                @Override
+//                public void onChanged(@Nullable String s) {
+//                    textView.setText(s);
+ //               }
+ //           });
 
-            Activity view = new Activity();
-            Button button = (Button) root.findViewById(R.id.getString);
-            button.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v) {
-                    // do something
-                    Log.d("myTag", "Fetching Task Data");
-                    final TextView stringTextView = (TextView) root.findViewById(R.id.addStringFromURL);
-                    // Instantiate the RequestQueue.
-                    RequestQueue queue = Volley.newRequestQueue(getActivity());
-                    //String url ="http://192.168.0.42:8080/test/all";
-                    String url ="https://www.google.com";
-
-                    // Request a string response from the provided URL.
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    // Display the first 500 characters of the response string.
-                                    stringTextView.setText(response);
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            stringTextView.setText("That didn't work!");
-                        }
-                    });
+//            Activity view = new Activity();
+//            Button button = (Button) root.findViewById(R.id.getString);
+//            button.setOnClickListener(new View.OnClickListener()
+//            {
+//                @Override
+//                public void onClick(View v) {
+//                    // do something
+//                    Log.d("myTag", "Fetching Task Data");
+//                    final TextView stringTextView = (TextView) root.findViewById(R.id.addStringFromURL);
+//                    // Instantiate the RequestQueue.
+//                    RequestQueue queue = Volley.newRequestQueue(getActivity());
+//                    //String url ="http://192.168.0.42:8080/test/all";
+//                    String url ="https://www.google.com";
+//
+//                    // Request a string response from the provided URL.
+//                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                            new Response.Listener<String>() {
+//                                @Override
+//                                public void onResponse(String response) {
+//                                    // Display the first 500 characters of the response string.
+//                                    stringTextView.setText(response);
+//                                }
+//                            }, new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//                            stringTextView.setText("That didn't work!");
+//                        }
+//                    });
 
                     // Add the request to the RequestQueue.
-                    queue.add(stringRequest);
-                }
-            });
+//                    queue.add(stringRequest);
+//                }
+//            });
             return root;
         }
 
