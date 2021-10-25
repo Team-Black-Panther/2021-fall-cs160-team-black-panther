@@ -9,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interval.R;
@@ -18,7 +20,7 @@ import java.util.List;
 // this class will use to set each component that will show in the reminder recycler cell that have not finish
 public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "ReminderRecyclerView";        // use to debug
-    private List<Reminder> reminderList;
+    private List<Reminder> reminderList;                             // list that will store the reminder
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -28,6 +30,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
         // each data item is just a string in this case
         public TextView title;
         public View layout;
+        // since it is uncompleted reminder then set ischeck to false
         public boolean isChecked = false;
         public CheckBox checkBox;
 
@@ -52,7 +55,6 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.reminder_row_layout, parent, false);
-
         // Set the view's size, margin, padding and layout parameters
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -63,38 +65,43 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Get element from a database at this position
         // replace the contents of view with that element
+        // set count to -1 case no uncompleted reminder
         int count = -1;
         for (int i = 0; i < reminderList.size(); i++) {
+            // check status reminder if reminder status is false will show in the recyclerView
             if (!reminderList.get(i).getStatus()) {
+                // add count
                 count++;
+                // to make the recyclerView show the first reminder that has staus false
                 if (count == position) {
                     Reminder row = reminderList.get(position);
                     Log.d(TAG, "complete: " + position + " : " + i);
+                    // set recyclerView title
                     holder.title.setText(reminderList.get(i).getTitle());
+                    // set recyclerView checkbox
                     holder.checkBox.setChecked(reminderList.get(i).getStatus());
-                    Log.d(TAG, "uncheck reminder to show: " + context);
 
+                    // will use to check that user mark it as complete it
                     int finalCount = i;
+                    // add listener to checkbox
                     holder.checkBox.setOnClickListener(new View.OnClickListener() {
-                        // user select a row
                         @Override
                         public void onClick(View view) {
+                            // uer check reminder as completed
                             if (holder.checkBox.isChecked()) {
+                                // change status of reminder to true
                                 reminderList.get(finalCount).setStatus(true);
                                 Log.d(TAG, "check reminder to show: " + (finalCount) + " ");
-                                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.completedReminderRecyclerView);
                                 notifyDataSetChanged();
                             }
                         }
                     });
 
+                    // this function will add new intent to pop up to show description
                     holder.layout.setOnClickListener(new View.OnClickListener() {
                         // user select a row
                         @Override
                         public void onClick(View view) {
-                            if (!holder.checkBox.isChecked()) {
-                                Log.d(TAG, "check reminder to show: " + (position) + " " + (row.getTitle()));
-                            }
                             Log.d(TAG, "select reminder to show: " + (position) + " " + (row.getTitle()));
                         }
                     });
@@ -103,6 +110,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
         }
     }
 
+    // function to count the total number of recyclerView that has incompleted status
     @Override
     public int getItemCount() {
         int count = 0;
