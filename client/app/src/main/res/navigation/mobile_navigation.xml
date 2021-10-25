@@ -40,6 +40,13 @@
         android:label="SlideshowFragment"
         tools:layout="@layout/fragment_newaccount" />
 
+    <fragment
+        android:id="@+id/addReminderBtn"
+        android:name="net.tbp.interval.ui.account.NewaccountFragment"
+        android:label="SlideshowFragment"
+        tools:layout="@layout/fragment_newaccount" />
+
+
 
 
 
