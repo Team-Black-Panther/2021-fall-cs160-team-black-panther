@@ -5,6 +5,7 @@
         android:minSdkVersion="22"
         android:targetSdkVersion="30" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:networkSecurityConfig="@xml/network_security_config"
@@ -24,5 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="net.tbp.interval.ui.reminder.AddNewReminder" />
+        <provider android:name="net.tbp.interval.ui.reminder.ReminderProvider"
+            android:authorities="@string/reminder_provider">
+        </provider>
     </application>
 </manifest>
