@@ -2,57 +2,62 @@ package net.tbp.interval.ui.reminder;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.interval.R;
 import com.example.interval.databinding.FragmentReminderBinding;
 
 
+import net.tbp.interval.MainActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // this class will use to render the reminder page
-public class ReminderFragment extends Fragment  {
+public class ReminderFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
+    String TAG = "ReminderFragment";
+    String TAGSQL = "ReminderSQL";
     private List<Reminder> reminderList = new ArrayList<>();        // list that will store reinder
     private ReminderViewModel reminderViewModel;
     private FragmentReminderBinding binding;
     private RecyclerView recyclerView;                              // recyclerview that create cell to store each reminder
     private RecyclerView.Adapter myAdapter;                         // will use to render reclerview
     private RecyclerView.LayoutManager layoutManager;               // layout of reclerview
-    private RecyclerView completedRecyclerView;                     // recyclerview that create cell to store each reminder
-    private RecyclerView.Adapter completedMyAdapter;                // will use to render reclerview
-    private RecyclerView.LayoutManager completedLayoutManager;
     private FragmentActivity myContext;
 
     // func to set view when user load page
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         reminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
         binding = FragmentReminderBinding.inflate(inflater, container, false);
         // to get root of the binding in this case it will mean fragment_reminder
         View root = binding.getRoot();
-
         //  set the page to have the option menu to have the add button
         setHasOptionsMenu(true);
+        // console that reminderfragment oncreate start
+        Log.d(TAG, "oncreate start");
 
         // textView
         reminderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -61,7 +66,10 @@ public class ReminderFragment extends Fragment  {
             }
         });
 
-        // recyclerView
+        // load reminder database
+        LoaderManager.getInstance(this).initLoader(0,null, (LoaderManager.LoaderCallbacks<Cursor>)this);
+
+        // set up recyclerView to show incomplete reminder
         recyclerView = (RecyclerView) root.findViewById(R.id.reminderRecyclerView);
         // Use this setting to improve performance when knowing that change
         // in content do not change the layout size of the RecyclerView
@@ -70,40 +78,8 @@ public class ReminderFragment extends Fragment  {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        // completeRecyclerView
-        completedRecyclerView = (RecyclerView) root.findViewById(R.id.completedReminderRecyclerView);
-        // Use this setting to improve performance when knowing that change
-        // in content do not change the layout size of the RecyclerView
-        completedRecyclerView.setHasFixedSize(true);
-        // Use linear layout manager
-        completedLayoutManager = new LinearLayoutManager(getContext());
-        completedRecyclerView.setLayoutManager(completedLayoutManager);
-
-        String task1 = "Write Rust as parser";
-        Reminder reminder = new Reminder(1,"HW CS152", task1, false);
-        reminderList.add(reminder);
-
-        String task2 = "Write essay 3-5 pages";
-        reminder = new Reminder(2,"Essay NUF163", task2, false );
-        reminderList.add(reminder);
-
-        String task3 = "Work on the reminder. Need to finish it!!";
-        reminder = new Reminder(3,"Proj CS160", task3, true);
-        reminderList.add(reminder);
-
-        String task4 = "Tell the work progress";
-        reminder = new Reminder(4,"Update proj CS160", task4, true);
-        reminderList.add(reminder);
-
-        String task5 = "Buy milk for morning coffee :)";
-        reminder = new Reminder( 5,"Buy milk",task5, false);
-        reminderList.add(reminder);
-
-        myAdapter = new ReminderRecyclerViewAdapter(getContext(), reminderList);
-        recyclerView.setAdapter(myAdapter);
-
-        completedMyAdapter = new CompletedReminderRecyclerViewAdapter(getContext(), reminderList);
-        completedRecyclerView.setAdapter(completedMyAdapter);
+        // console that reminderfragment oncreate end
+        Log.d(TAG, "oncreate end");
         return root;
     }
 
@@ -116,6 +92,15 @@ public class ReminderFragment extends Fragment  {
     @Override
     public void onResume() {
         super.onResume();
+        // console that reminderfragment onResume start
+        Log.d(TAG, "onResume start");
+
+        // add adapter that will use to show incomplete reminder
+        myAdapter = new ReminderRecyclerViewAdapter(getContext(), reminderList);
+        recyclerView.setAdapter(myAdapter);
+
+        // console that reminderfragment onResume end
+        Log.d(TAG, "onResume end");
     }
 
     // add button in the action bar
@@ -126,14 +111,79 @@ public class ReminderFragment extends Fragment  {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    // this will later link to new intent
     @Override
     public void onAttach(Context context) {
+        Log.d(TAG, "onAttach");
         super.onAttach(context);
-
         Activity a;
         if (context instanceof Activity){
             a = (Activity) context;
         }
     }
 
+    // func that will call when user click button on the action bar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // this will use to add new reminder
+            case R.id.addReminderBtn:
+                // console that user click add new reminder btn
+                Log.d(TAGSQL, "user click add new reminder");
+                // initial intent that will use to call AddNewReminder class to render screen to add new reminder
+                Intent informationIntent = new Intent(getContext(), AddNewReminder.class);
+                startActivity(informationIntent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // helper func to load sql
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        // Uri to the content provider LocationContentProvider
+        Uri uri = ReminderProvider.CONTENT_URI;
+        Log.d(TAGSQL, "onCreateLoader");
+        return new CursorLoader(getContext(), uri, null, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader loader, Cursor cursor) {
+        Log.d(TAG, "onLoadFinished");
+        // variable that will use to store data from sql
+        int reminderCount = 0;
+        int id;
+        String title = "title";
+        String description;
+        Boolean status;
+
+        reminderCount = cursor.getCount();
+        reminderList.clear();
+
+        cursor.moveToFirst();
+        for(int i =0; i < reminderCount; i++) {
+            // get id from sql
+            id = cursor.getInt(cursor.getColumnIndex(ReminderProvider._ID));
+            // get title from sql
+            title = cursor.getString(cursor.getColumnIndex(ReminderProvider.TITLE));
+            // get description from sql
+            description = cursor.getString(cursor.getColumnIndex(ReminderProvider.DESCRIPTION));
+            // get status from sql
+            status = cursor.getInt(cursor.getColumnIndex(ReminderProvider.STATUS)) > 0;
+            Log.d(TAGSQL, " id: " + id + " title: " + title + " description: " +
+                    description + " status: " + status);
+
+            // add data to reminder class
+            Reminder reminder = new Reminder( id, title, description, status);
+            // add reminder to arraylist
+            reminderList.add(reminder);
+            // move cursor to the next one
+            cursor.moveToNext();
+        }
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+    }
 }
