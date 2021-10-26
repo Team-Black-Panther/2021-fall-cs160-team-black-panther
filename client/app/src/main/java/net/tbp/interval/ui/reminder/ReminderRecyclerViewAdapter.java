@@ -1,16 +1,29 @@
 package net.tbp.interval.ui.reminder;
 
+import android.app.Activity;
+import android.content.ContentProvider;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interval.R;
@@ -22,6 +35,9 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     private static final String TAG = "ReminderRecyclerView";        // use to debug
     private List<Reminder> reminderList;                             // list that will store the reminder
     private Context context;
+    String TAGSQL = "ReminderSQL";
+
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -75,7 +91,6 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                 // to make the recyclerView show the first reminder that has staus false
                 if (count == position) {
                     Reminder row = reminderList.get(position);
-                    Log.d(TAG, "complete: " + position + " : " + i);
                     // set recyclerView title
                     holder.title.setText(reminderList.get(i).getTitle());
                     // set recyclerView checkbox
@@ -91,7 +106,14 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                             if (holder.checkBox.isChecked()) {
                                 // change status of reminder to true
                                 reminderList.get(finalCount).setStatus(true);
-                                Log.d(TAG, "check reminder to show: " + (finalCount) + " ");
+
+                                // update data to sql
+                                ContentValues values = new ContentValues();
+                                // title that user will add to the database
+                                values.put(ReminderProvider.STATUS, true);
+                                context.getContentResolver().update(ReminderProvider.CONTENT_URI, values, ReminderProvider._ID + "="
+                                        + reminderList.get(finalCount).getReminderId(), null);
+                                // update data
                                 notifyDataSetChanged();
                             }
                         }
