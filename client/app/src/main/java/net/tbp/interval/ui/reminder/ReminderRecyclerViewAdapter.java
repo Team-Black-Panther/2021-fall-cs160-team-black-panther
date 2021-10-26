@@ -37,8 +37,6 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     private Context context;
     String TAGSQL = "ReminderSQL";
 
-
-
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // provide access to all the views for a data item in a view holder
