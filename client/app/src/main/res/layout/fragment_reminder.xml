@@ -13,7 +13,7 @@
     tools:layout_editor_absoluteY="80dp"
     >
 
-
+    <!--to fix bug the recyclerView did not render without refresh in API30-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reminderRecyclerView"
         android:layout_width="0dp"
