@@ -1,16 +1,16 @@
-package net.tbp.interval.ui.reminder;
+package net.tbp.interval.ui.account;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ReminderViewModel extends ViewModel{
+public class NewaccountViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ReminderViewModel() {
+    public NewaccountViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("");
+        mText.setValue("This is new account fragment");
     }
 
     public LiveData<String> getText() {
