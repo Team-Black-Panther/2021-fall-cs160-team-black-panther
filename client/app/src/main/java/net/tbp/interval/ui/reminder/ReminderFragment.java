@@ -34,6 +34,7 @@ import com.example.interval.databinding.FragmentReminderBinding;
 import net.tbp.interval.MainActivity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // this class will use to render the reminder page
@@ -154,9 +155,11 @@ public class ReminderFragment extends Fragment implements LoaderManager.LoaderCa
         // variable that will use to store data from sql
         int reminderCount = 0;
         int id;
-        String title = "title";
+        String name = "name";
         String description;
         Boolean status;
+        int priority;
+        Date duedate = new Date();
 
         reminderCount = cursor.getCount();
         reminderList.clear();
@@ -165,17 +168,21 @@ public class ReminderFragment extends Fragment implements LoaderManager.LoaderCa
         for(int i =0; i < reminderCount; i++) {
             // get id from sql
             id = cursor.getInt(cursor.getColumnIndex(ReminderProvider._ID));
-            // get title from sql
-            title = cursor.getString(cursor.getColumnIndex(ReminderProvider.TITLE));
+            // get name from sql
+            name = cursor.getString(cursor.getColumnIndex(ReminderProvider.NAME));
             // get description from sql
             description = cursor.getString(cursor.getColumnIndex(ReminderProvider.DESCRIPTION));
             // get status from sql
             status = cursor.getInt(cursor.getColumnIndex(ReminderProvider.STATUS)) > 0;
-            Log.d(TAGSQL, " id: " + id + " title: " + title + " description: " +
-                    description + " status: " + status);
+            priority = cursor.getInt(cursor.getColumnIndex(ReminderProvider.PRIORITY));
+            Long dateFromSql = cursor.getLong(cursor.getColumnIndex(ReminderProvider.DUEDATE));
+            duedate.setTime(dateFromSql);
+            Log.d(TAGSQL, " id: " + id + " name: " + name + " description: " +
+                    description + " status: " + status + " priority: " + priority
+                    + " duedate: " + duedate);
 
             // add data to reminder class
-            Reminder reminder = new Reminder( id, title, description, status);
+            Reminder reminder = new Reminder( id, name, description, status, priority, duedate);
             // add reminder to arraylist
             reminderList.add(reminder);
             // move cursor to the next one
