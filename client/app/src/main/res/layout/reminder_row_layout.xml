@@ -6,11 +6,11 @@
 
     <TextView
         android:id="@+id/reminderTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentRight="false"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
@@ -27,4 +27,20 @@
         android:minWidth="40dp"
         android:minHeight="40dp"
         android:text="" />
+
+    <TextView
+        android:id="@+id/reminderDuedate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/reminderCheckBox"
+        android:gravity="center_vertical"
+        android:text="date"
+        android:textAlignment="textEnd"
+        android:textColor="@color/red"
+        android:textSize="14dp" />
 </RelativeLayout>
