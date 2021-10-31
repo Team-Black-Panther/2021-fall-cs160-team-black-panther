@@ -7,6 +7,7 @@
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.Button;
+    import android.widget.CalendarView;
     import android.widget.TextView;
 
     import androidx.annotation.NonNull;
@@ -23,8 +24,11 @@
     import com.android.volley.toolbox.Volley;
     import com.example.interval.R;
     import com.example.interval.databinding.FragmentCalendarBinding;
-    
+    import com.example.interval.databinding.FragmentReminderBinding;
+
     public class CalendarFragment extends Fragment {
+
+
 
         private CalendarViewModel calendarViewModel;
         private FragmentCalendarBinding binding;
@@ -36,6 +40,22 @@
 
             binding = FragmentCalendarBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
+
+
+            //setContentView(R.layout.add_calendar);
+            CalendarView calendarView = root.findViewById(R.id.calendarView);
+            final TextView selectedDay = root.findViewById(R.id.selectedYear);
+//            final TextView selectedMonth = root.findViewById(R.id.selectedMonth);
+//            final TextView selectedYear = root.findViewById(R.id.selectedDay);
+            calendarView.setOnDateChangeListener((new CalendarView.OnDateChangeListener() {
+                @Override
+                public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                    selectedDay.setText("Selected Date: " + dayOfMonth + "/" + (month + 1) + "/" + year);
+//                    selectedMonth.setText("Selected Month: " + month);
+//                    selectedYear.setText("Seclected Year: " + year);
+                }
+            }));
+
 
 //            final TextView textView = binding.calendar1.textView10.findViewById(R.id.editTextTextPersonName4);
 //            textView.setText();
@@ -78,7 +98,7 @@
                     // Add the request to the RequestQueue.
 //                    queue.add(stringRequest);
 //                }
-//            });
+////            });
             return root;
         }
 
