@@ -30,9 +30,11 @@ public class ReminderProvider extends ContentProvider {
 
     // index that will store in the database
     static final String _ID = "_id";
-    static final String TITLE = "title";
+    static final String NAME = "name";
     static final String DESCRIPTION = "description";
     static final String STATUS = "status";
+    static final String PRIORITY = "priority";
+    static final String DUEDATE = "duedate";
 
     private static HashMap<String, String> REMINDERS_PROJECTION_MAP;
     static final int REMINDERS = 1;
@@ -57,9 +59,11 @@ public class ReminderProvider extends ContentProvider {
     static final String CREATE_DB_TABLE =
             " CREATE TABLE " + REMINDER_TABLE_NAME +
                     " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    " title TEXT NOT NULL, " +
+                    " name TEXT NOT NULL, " +
                     " description TEXT, " +
-                    " status BOOLEAN);";
+                    " status BOOLEAN, " +
+                    " priority INTEGER, "+
+                    " duedate DATE );";
 
     // Helper class that actually create and manage the provider's underlying data repository
     private static class DatabaseHelper extends SQLiteOpenHelper{
