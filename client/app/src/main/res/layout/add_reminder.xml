@@ -53,7 +53,7 @@
 
     <EditText
         android:id="@+id/reminderDescription_label"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="175dp"
         android:layout_marginEnd="20dp"
@@ -65,5 +65,50 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="fill_parent"
         />
+
+    <SeekBar
+        android:id="@+id/prioritySeekBar"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:max="3"
+        android:progress="0"
+        android:progressTint="@color/primaryColor"
+        android:thumbTint="@color/primaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prioriyTextView" />
+
+    <TextView
+        android:id="@+id/prioriyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:text="Prioriy: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminderDescription_label" />
+
+    <TextView
+        android:id="@+id/prioriyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Low"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/prioriyTextView"
+        app:layout_constraintTop_toBottomOf="@+id/reminderDescription_label" />
+
+    <CalendarView
+        android:id="@+id/reminderCalendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prioritySeekBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
