@@ -1,18 +1,24 @@
 package net.tbp.interval.ui.reminder;
 
+import java.util.Date;
+
 // class to manage the variable that relate to the reminder
 public class Reminder {
-    private String title;           // title of the task
+    private String name;           // name of the task
     private int id;                 // id of task
     private String description;     // description of task
     private Boolean status;         // true if task is completed, false if task have not co,plete
+    private int priority;
+    private Date duedate;
 
     // construction of the reminder class
-    public Reminder(int id, String title, String description, Boolean status ) {
+    public Reminder(int id, String name, String description, Boolean status, int priority, Date duedate ) {
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.description = description;
         this.status = status;
+        this.priority = priority;
+        this.duedate = duedate;
     }
 
     // set id
@@ -25,14 +31,14 @@ public class Reminder {
         return id;
     }
 
-    // set title of reminder
-    public void setTitle(String title){
-        this.title = title;
+    // set name of reminder
+    public void setName(String name){
+        this.name = name;
     }
 
-    // get title of reminder
-    public String getTitle(){
-        return title;
+    // get name of reminder
+    public String getName(){
+        return name;
     }
 
     // set description
@@ -52,6 +58,22 @@ public class Reminder {
 
     // get status of reminder
     public boolean getStatus(){ return status;}
+
+    // set priority of reminder
+    public void setPriority(int priority){
+        this.priority = priority;
+    }
+
+    // get duedate of reminder
+    public int getPriority(){ return priority;}
+
+    // set priority of reminder
+    public void setDuedate(Date duedate){
+        this.duedate = duedate;
+    }
+
+    // get duedate of reminder
+    public Date getDuedate(){ return duedate;}
 }
 
 
