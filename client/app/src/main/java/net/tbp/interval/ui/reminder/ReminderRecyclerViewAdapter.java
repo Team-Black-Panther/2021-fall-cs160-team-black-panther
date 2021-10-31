@@ -28,6 +28,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interval.R;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 // this class will use to set each component that will show in the reminder recycler cell that have not finish
@@ -42,18 +45,20 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     // provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView title;
+        public TextView name;
         public View layout;
         // since it is uncompleted reminder then set ischeck to false
         public boolean isChecked = false;
         public CheckBox checkBox;
+        public TextView duedate;
 
         // Construction of ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = itemView;
-            title = (TextView) itemView.findViewById(R.id.reminderTitle);
+            name = (TextView) itemView.findViewById(R.id.reminderTitle);
             checkBox = (CheckBox) itemView.findViewById(R.id.reminderCheckBox);
+            duedate = (TextView) itemView.findViewById(R.id.reminderDuedate);
         }
     }
 
@@ -89,10 +94,14 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                 // to make the recyclerView show the first reminder that has staus false
                 if (count == position) {
                     Reminder row = reminderList.get(position);
-                    // set recyclerView title
-                    holder.title.setText(reminderList.get(i).getTitle());
+                    // set recyclerView name
+                    holder.name.setText(reminderList.get(i).getName());
                     // set recyclerView checkbox
                     holder.checkBox.setChecked(reminderList.get(i).getStatus());
+                    Date date = reminderList.get(i).getDuedate();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd, YYYY");
+                    String dateString = dateFormat.format(date);
+                    holder.duedate.setText(dateString);
 
                     // will use to check that user mark it as complete it
                     int finalCount = i;
@@ -107,7 +116,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
 
                                 // update data to sql
                                 ContentValues values = new ContentValues();
-                                // title that user will add to the database
+                                // name that user will add to the database
                                 values.put(ReminderProvider.STATUS, true);
                                 context.getContentResolver().update(ReminderProvider.CONTENT_URI, values, ReminderProvider._ID + "="
                                         + reminderList.get(finalCount).getReminderId(), null);
@@ -122,7 +131,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                         // user select a row
                         @Override
                         public void onClick(View view) {
-                            Log.d(TAG, "select reminder to show: " + (position) + " " + (row.getTitle()));
+                            Log.d(TAG, "select reminder to show: " + (position) + " " + (row.getName()));
                         }
                     });
                 }
@@ -141,6 +150,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                 }
             }
         }
+        Log.d(TAG, String.valueOf(count));
         return count;
     }
 }
