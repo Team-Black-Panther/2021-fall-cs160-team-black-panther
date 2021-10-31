@@ -4,6 +4,8 @@
     import android.os.Bundle;
     import android.util.Log;
     import android.view.LayoutInflater;
+    import android.view.Menu;
+    import android.view.MenuInflater;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.Button;
@@ -36,6 +38,9 @@
 
             binding = FragmentCalendarBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
+
+            //  set the page to have the option menu to have the add button
+            setHasOptionsMenu(true);
 
 //            final TextView textView = binding.calendar1.textView10.findViewById(R.id.editTextTextPersonName4);
 //            textView.setText();
@@ -86,6 +91,14 @@
         public void onDestroyView() {
             super.onDestroyView();
             binding = null;
+        }
+
+        // add button in the action bar
+        @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+            // Inflate the menu items for use in the action bar
+            inflater.inflate(R.menu.calendar_menu, menu);
+            super.onCreateOptionsMenu(menu, inflater);
         }
 
 
