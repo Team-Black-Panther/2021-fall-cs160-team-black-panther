@@ -111,16 +111,6 @@ public class AddNewReminder extends Activity {
                 values.put(ReminderProvider.DUEDATE, dueDate.getTime());
                 // load the uri to insert data
                 Uri uri = getContentResolver().insert(ReminderProvider.CONTENT_URI, values);
-                // make sure that the sqliteis updated before go back to reminder page
-                try {
-                    Log.d("add reminder", "thread");
-                    Thread.sleep(1000);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                // console to output that user press save
-                Log.d("add reminder", "save");
                 // go back to prev screen
                 finish();
             }
