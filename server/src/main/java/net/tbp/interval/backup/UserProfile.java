@@ -20,17 +20,17 @@ import javax.persistence.Table;
 public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	// TODO: make sure this works with our current tables
+	@Column(name = "userID")
 	private Integer id;
 
+	@Column(name = "username")
+	String userName;
+	
 	@Column(name = "firstName")
 	String firstName;
 
 	@Column(name = "lastName")
 	String lastName;
-
-	@Column(name = "username")
-	String userName;
 
 	@Column(name = "passhash")
 	String passhash;
