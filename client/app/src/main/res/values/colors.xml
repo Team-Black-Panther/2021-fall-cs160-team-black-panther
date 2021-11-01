@@ -13,5 +13,6 @@
     <color name="transpalentColor">#0000ffff</color>
     <color name="bottom_nav">#FFC4C4C4</color>
     <color name="colorAccent">#525252</color>
+    <color name="red">#FF0000</color>
 
 </resources>
