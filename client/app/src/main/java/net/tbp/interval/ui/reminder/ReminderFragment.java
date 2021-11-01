@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -95,11 +96,17 @@ public class ReminderFragment extends Fragment implements LoaderManager.LoaderCa
         super.onResume();
         // console that reminderfragment onResume start
         Log.d(TAG, "onResume start");
-
-        // add adapter that will use to show incomplete reminder
-        myAdapter = new ReminderRecyclerViewAdapter(getContext(), reminderList);
-        recyclerView.setAdapter(myAdapter);
-
+        // use lock thred
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "onResume start");
+                // add adapter that will use to show incomplete reminder
+                myAdapter = new ReminderRecyclerViewAdapter(getContext(), reminderList);
+                recyclerView.setAdapter(myAdapter);
+            }
+        }, 10);
         // console that reminderfragment onResume end
         Log.d(TAG, "onResume end");
     }
