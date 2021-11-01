@@ -3,6 +3,8 @@ package net.tbp.interval.database;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,20 +36,14 @@ public class MainController {
 	// Basic User Management
 	@GetMapping(path = "/{username}")
 	public @ResponseBody Integer getUID(@PathVariable String username) {
-		for (UserProfile p : userRepo.findAll()) {
-			if (p.getUserName().equals(username)) {
-				return p.getId();
-			}
-		}
-		return null;
+		return userRepo.findProfileByName(username).getId();
 	}
 
-	@PostMapping(path = "/{username}")
-	public @ResponseBody Integer allocateUIDToUser(@PathVariable String username) {
-		UserProfile newProfile = new UserProfile();
-		newProfile.setUserName(username);
+	@PostMapping(path = "/register")
+	public @ResponseBody ResponseEntity<Integer> registerUser(@RequestBody UserProfile newProfile) {
 		userRepo.save(newProfile);
-		return userRepo.findProfileByName(username).getId();
+		newProfile.setId(userRepo.findProfileByName(newProfile.getUserName()).getId());
+		return new ResponseEntity<Integer>(newProfile.getId(), HttpStatus.OK);
 	}
 
 	@PutMapping(path = "/{uid}")
@@ -63,7 +59,7 @@ public class MainController {
 	}
 
 	@DeleteMapping(path = "/{uid}")
-	public @ResponseBody void addNewUser(@PathVariable Integer uid) {
+	public @ResponseBody void deleteUser(@PathVariable Integer uid) {
 		userRepo.deleteById(uid);
 	}
 
@@ -75,20 +71,24 @@ public class MainController {
 	}
 
 	@PostMapping(path = "/{uid}/currentevent")
-	public @ResponseBody Event addNewCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid) {
-		currentEventRepo.addNewCurrentEvent(uid, newEvent);
-		return newEvent;
+	public @ResponseBody ResponseEntity<Event> addNewCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid) {
+		newEvent.setOwner(uid);
+		currentEventRepo.save(newEvent);
+		return new ResponseEntity<Event>(newEvent, HttpStatus.OK);
 	}
 
 	@PutMapping(path = "/{uid}/currentevent/{eventid}")
-	public @ResponseBody Event updateCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid,
+	public @ResponseBody ResponseEntity<Event> updateCurrentEvent(@RequestBody Event newEvent, @PathVariable Integer uid,
 			@PathVariable Integer eventid) {
-		currentEventRepo.updateCurrentEvent(uid, eventid, newEvent);
-		return newEvent;
+		currentEventRepo.deleteById(eventid);
+		newEvent.setOwner(uid);
+		currentEventRepo.save(newEvent);
+		return new ResponseEntity<Event>(newEvent, HttpStatus.OK);
 	}
 
 	@DeleteMapping(path = "/{uid}/currentevent/{eventid}")
 	public @ResponseBody void deleteCurrentEvent(@PathVariable Integer uid, @PathVariable Integer eventid) {
-		currentEventRepo.deleteCurrentEvent(uid, eventid);
+		currentEventRepo.deleteById(eventid);
 	}
+
 }

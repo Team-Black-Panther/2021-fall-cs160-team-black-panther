@@ -29,20 +29,20 @@ public class EventRepositoryTest {
 	void setUp() {
 		testProfile1 = new UserProfile(1, "John", "Doe", "jd123", "pepela", "jd123@gmail.com", "0001234567");
 		testProfile1 = new UserProfile(2, "Mary", "Jane", "mj441", "spooderman", "mj441@gmail.com", "0009876543");
-		testEvent1 = new Event(1, "Dishes", "Do the dishes.", "Home", "Housework", "none",
+		testEvent1 = new Event(1, 1, "Dishes", "Do the dishes.", "Home", "Housework", "none",
 				LocalDateTime.of(2021, 7, 24, 5, 2), LocalDateTime.of(2021, 7, 24, 6, 2));
-		testEvent2 = new Event(2, "Homework", "Do my homework.", "Home", "Schoolwork", "none",
+		testEvent2 = new Event(2, 1, "Homework", "Do my homework.", "Home", "Schoolwork", "none",
 				LocalDateTime.of(2021, 7, 24, 6, 2), LocalDateTime.of(2021, 7, 24, 7, 2));
-		testEvent3 = new Event(3, "Meeting", "Team meeting stuff.", "Home", "Schoolwork", "none",
+		testEvent3 = new Event(3, 2, "Meeting", "Team meeting stuff.", "Not Home", "Schoolwork", "none",
 				LocalDateTime.of(2021, 7, 24, 7, 2), LocalDateTime.of(2021, 7, 24, 8, 2));
 	}
 
 	@Test
 	void tryAddTestEvents() {
 		// add the 3 events
-		eventRepo.addNewCurrentEvent(testProfile1.getId(), testEvent1);
-		eventRepo.addNewCurrentEvent(testProfile1.getId(), testEvent2);
-		eventRepo.addNewCurrentEvent(testProfile2.getId(), testEvent3);
+		eventRepo.save(testEvent1);
+		eventRepo.save(testEvent2);
+		eventRepo.save(testEvent3);
 
 		// fetch the events
 		List<Event> currentEventsForT1 = eventRepo.findAllCurrentEvents(testProfile1.getId());
@@ -61,9 +61,11 @@ public class EventRepositoryTest {
 	
 	@Test
 	void updateOneEvent() {
-		Event testEvent4 = new Event(3, "Meeting updated", "Team meeting stuff.", "Home", "Schoolwork", "none",
+		Event testEvent4 = new Event(3, 2, "Meeting updated", "Team meeting stuff.", "Home", "Schoolwork", "none",
 				LocalDateTime.of(2021, 7, 24, 7, 2), LocalDateTime.of(2021, 7, 24, 8, 2));
-		eventRepo.updateCurrentEvent(testProfile1.getId(), testEvent3.getId(), testEvent4);
+		eventRepo.deleteById(3);
+		testEvent4.setOwner(2);
+		eventRepo.save(testEvent4);
 
 		Optional<Event> targetCheck = eventRepo.findById(3);
 		assertTrue(targetCheck.isPresent());
@@ -74,7 +76,7 @@ public class EventRepositoryTest {
 	
 	@Test
 	void tryDeleteEvent() {
-		eventRepo.deleteCurrentEvent(testProfile1.getId(), 2);
+		eventRepo.delete(testEvent2);
 		List<Event> currentEventsForT1 = eventRepo.findAllCurrentEvents(testProfile1.getId());
 		assertEquals(currentEventsForT1.size(), 1);
 		assertFalse(currentEventsForT1.contains(testEvent2));

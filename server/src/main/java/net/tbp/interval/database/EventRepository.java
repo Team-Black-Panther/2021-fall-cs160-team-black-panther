@@ -10,9 +10,10 @@ import net.tbp.interval.backup.Event;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
 	
-	@Query("SELECT * FROM currentevent WHERE eventID IN (SELECT eventID FROM userhascurrentevent WHERE userID = :uid)")
+	@Query("SELECT e FROM Event e WHERE owner = :uid")
 	List<Event> findAllCurrentEvents(@Param("uid") Integer uid);
 	
+	/*
 	@Query("INSERT INTO currentevent(eventID, name, description, location, category, alarm, start, end) "
 			+ "VALUES(:newEvent.getID(), :newEvent.getName(), :newEvent.getDescription(), :newEvent.getLocation(), :newEvent.getCategory(), :newEvent.getAlarm(), :newEvent.getStartTime(), :newEvent.getEndTime()); "
 			+ "INSERT INTO userhascurrentevent VALUES (:uid, :newEvent.getID)")
@@ -27,5 +28,6 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 	@Query("DELETE FROM currentevent WHERE eventID = eventid;" 
 			+ "DELETE FROM userhascurrentevent WHERE userID = :uid AND eventID = :eventid")
 	void deleteCurrentEvent(@Param("uid") Integer uid, @Param("eventid") Integer eventid);
-	
+	*/
+
 }

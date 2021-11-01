@@ -8,6 +8,6 @@ import net.tbp.interval.backup.UserProfile;
 
 public interface UserRepository extends JpaRepository<UserProfile, Integer> {
 	
-	@Query("SELECT * FROM user WHERE username = :target")
+	@Query("SELECT e FROM UserProfile e WHERE username = :target")
 	UserProfile findProfileByName(@Param("target") String username);
 }
