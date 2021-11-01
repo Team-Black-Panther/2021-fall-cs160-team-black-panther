@@ -1,5 +1,7 @@
 package net.tbp.interval.backup;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,27 +20,56 @@ import javax.persistence.Table;
 public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	// TODO: make sure this works with our current tables
+	@Column(name = "userID")
 	private Integer id;
-	
-	@Column(name = "firstName")
-	String firstName;
-	
-	@Column(name = "lastName")
-	String lastName;
-	
+
 	@Column(name = "username")
 	String userName;
 	
+	@Column(name = "firstName")
+	String firstName;
+
+	@Column(name = "lastName")
+	String lastName;
+
 	@Column(name = "passhash")
 	String passhash;
-	
+
 	@Column(name = "email")
 	String email;
-	
+
 	@Column(name = "phoneNumber")
 	String phoneNumber;
-	
+
+	/**
+	 * Default constructor.
+	 */
+	public UserProfile() {
+		this(0, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR");
+	}
+
+	/**
+	 * All arg constructor.
+	 * 
+	 * @param id
+	 * @param firstName
+	 * @param lastName
+	 * @param userName
+	 * @param passhash
+	 * @param email
+	 * @param phoneNumber
+	 */
+	public UserProfile(Integer id, String firstName, String lastName, String userName, String passhash, String email,
+			String phoneNumber) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.passhash = passhash;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -135,6 +166,26 @@ public class UserProfile {
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, firstName, id, lastName, passhash, phoneNumber, userName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserProfile other = (UserProfile) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(passhash, other.passhash) && Objects.equals(phoneNumber, other.phoneNumber)
+				&& Objects.equals(userName, other.userName);
 	}
 
 }
