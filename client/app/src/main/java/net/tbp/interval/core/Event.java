@@ -1,14 +1,7 @@
-package net.tbp.interval.backup;
+package net.tbp.interval.core;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * Class for encapsulating a singular Event object.
@@ -16,42 +9,25 @@ import javax.persistence.Table;
  * @author Hugo Wong
  *
  */
-@Entity
-@Table(name = "event")
 public class Event {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	// TODO: make sure this works with our current tables
 	private Integer id;
-  
-	@Column(name = "owner")
-	private int owner;
-  
-	@Column(name = "name")
+
 	private String name;
 
-	@Column(name = "description")
 	private String description;
 
-	@Column(name = "location")
 	private String location;
 
-	@Column(name = "category")
 	private String category;
 
-	@Column(name = "alarm")
 	private String alarm;
 
 	// date-time format: 2011-12-03T10:15:30+01:00
-	@Column(name = "start")
-	private LocalDateTime startTime;
-	
-	@Column(name = "end")
-	private LocalDateTime endTime;
+	private LocalDateTime startTime, endTime;
 
 	public Event() {
-		this(0, 0, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR", null, null);
-
+		this(0, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR", null, null);
 	}
 
 	/**
@@ -66,7 +42,7 @@ public class Event {
 	 * @param startTime
 	 * @param endTime
 	 */
-	public Event(Integer id, Integer owner, String name, String description, String location, String category, String alarm,
+	public Event(Integer id, String name, String description, String location, String category, String alarm,
 			LocalDateTime startTime, LocalDateTime endTime) {
 		this.id = id;
 		this.name = name;
@@ -92,20 +68,6 @@ public class Event {
 		this.id = id;
 	}
 
-	/**
-	 * @return the UID of the owner
-	 */
-	public Integer getOwner() {
-		return owner;
-	}
-	
-	/**
-	 * @param id the new UID to set
-	 */
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-	
 	/**
 	 * @return the name
 	 */
@@ -225,4 +187,3 @@ public class Event {
 	}
 
 }
-
