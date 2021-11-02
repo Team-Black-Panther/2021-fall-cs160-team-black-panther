@@ -183,6 +183,7 @@ public class ReminderFragment extends Fragment implements LoaderManager.LoaderCa
             status = cursor.getInt(cursor.getColumnIndex(ReminderProvider.STATUS)) > 0;
             priority = cursor.getInt(cursor.getColumnIndex(ReminderProvider.PRIORITY));
             Long dateFromSql = cursor.getLong(cursor.getColumnIndex(ReminderProvider.DUEDATE));
+            duedate = new Date();
             duedate.setTime(dateFromSql);
             Log.d(TAGSQL, " id: " + id + " name: " + name + " description: " +
                     description + " status: " + status + " priority: " + priority
