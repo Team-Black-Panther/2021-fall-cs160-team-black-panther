@@ -2,6 +2,9 @@ package net.tbp.interval.ui.calendar;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 
 
@@ -14,6 +17,7 @@ public class ColorSettings extends Activity {
     private int SeekbarR,SeekbarG,SeekbarB;
     SeekBar red_Bar, green_Bar, blue_Bar;
     ConstraintLayout mScreen;
+    private Button closeBtn;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,17 @@ public class ColorSettings extends Activity {
         red_Bar.setOnSeekBarChangeListener(seekBarChangeListener);
         green_Bar.setOnSeekBarChangeListener(seekBarChangeListener);
         blue_Bar.setOnSeekBarChangeListener(seekBarChangeListener);
+
+        closeBtn = (Button) findViewById(R.id.txtclose);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // to check that btn work when user click cancel
+                Log.d("add reminder", "cancel");
+                // go back to prev screen
+                finish();
+            }
+        });
     }
 
     private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -50,6 +65,8 @@ public class ColorSettings extends Activity {
         public void onStopTrackingTouch(SeekBar seekBar) {
 
         }
+
+
     };
 
     private void BackgroundColorUpdate() {
