@@ -166,13 +166,13 @@ public class ReminderFragment extends Fragment implements LoaderManager.LoaderCa
         String description;
         Boolean status;
         int priority;
-        Date duedate = new Date();
+        Date duedate;
 
         reminderCount = cursor.getCount();
         reminderList.clear();
 
         cursor.moveToFirst();
-        for(int i =0; i < reminderCount; i++) {
+        for(int i = 0; i < reminderCount; i++) {
             // get id from sql
             id = cursor.getInt(cursor.getColumnIndex(ReminderProvider._ID));
             // get name from sql
