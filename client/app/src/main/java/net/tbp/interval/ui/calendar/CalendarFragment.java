@@ -1,13 +1,17 @@
     package net.tbp.interval.ui.calendar;
 
     import android.app.Activity;
+    import android.content.Intent;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.LayoutInflater;
     import android.view.Menu;
     import android.view.MenuInflater;
+    import android.view.MenuItem;
     import android.view.View;
     import android.view.ViewGroup;
+    import android.widget.Button;
+    import android.widget.CalendarView;
     import android.widget.Button;
     import android.widget.TextView;
 
@@ -25,9 +29,12 @@
     import com.android.volley.toolbox.Volley;
     import com.example.interval.R;
     import com.example.interval.databinding.FragmentCalendarBinding;
-    
+
+    import net.tbp.interval.ui.reminder.AddNewReminder;
+
     public class CalendarFragment extends Fragment {
 
+        private static final String TAGSQL = "changeColor";
         private CalendarViewModel calendarViewModel;
         private FragmentCalendarBinding binding;
 
@@ -41,6 +48,20 @@
 
             //  set the page to have the option menu to have the add button
             setHasOptionsMenu(true);
+
+//            CalendarView calendarView = root.findViewById(R.id.calendarView);
+//            final TextView selectedDay = root.findViewById(R.id.selectedYear);
+////            final TextView selectedMonth = root.findViewById(R.id.selectedMonth);
+////            final TextView selectedYear = root.findViewById(R.id.selectedDay);
+//            calendarView.setOnDateChangeListener((new CalendarView.OnDateChangeListener() {
+//                @Override
+//                public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+//                    selectedDay.setText("Selected Date: " + dayOfMonth + "/" + (month + 1) + "/" + year);
+////                    selectedMonth.setText("Selected Month: " + month);
+////                    selectedYear.setText("Seclected Year: " + year);
+//                }
+//            }));
+
 
 //            final TextView textView = binding.calendar1.textView10.findViewById(R.id.editTextTextPersonName4);
 //            textView.setText();
@@ -99,7 +120,59 @@
             // Inflate the menu items for use in the action bar
             inflater.inflate(R.menu.calendar_menu, menu);
             super.onCreateOptionsMenu(menu, inflater);
+//            setContentView(R.layout.calendar_menu);
+//            myDialog = new Dialog(this);
+
         }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                // this will use to add new reminder
+                case R.id.changeColor:
+                    // console that user click add new reminder btn
+                    Log.d(TAGSQL, "user click add new reminder");
+                    // initial intent that will use to call AddNewReminder class to render screen to add new reminder
+                    Intent informationIntent = new Intent(getContext(), ColorSettings.class);
+                    startActivity(informationIntent);
+                    return true;
+
+
+
+//                case R.id.changeFuntSize:
+//                    // console that user click add new reminder btn
+//                    Log.d(TAGSQL, "user click add new reminder");
+//                    // initial intent that will use to call AddNewReminder class to render screen to add new reminder
+//                    Intent informationIntent = new Intent(getContext(), FontSizeSettings.class);
+//                    startActivity(informationIntent);
+//                    return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+
+
+
+
+
+
+
+//        public void ShowPopup(View v) {
+//            TextView txtclose;
+//            Button changeColor;
+//            myDialog.setContentView(R.layout.custompopup);
+//            txtclose = (TextView) myDialog.finViewById(R,id.txtclose);
+//            changeColor = (Button) myDialog.findViewById(R.id.changeColor);
+//            txtclose.setOnClickListener(new View.OnClickListener () {
+//                @Override
+//                public void onClick(View v) {
+//                    myDialog.dismiss();
+//                }
+//            });
+//        }
+
+
+
+
 
 
     }
