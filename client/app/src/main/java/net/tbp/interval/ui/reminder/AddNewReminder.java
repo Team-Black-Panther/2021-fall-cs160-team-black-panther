@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +11,9 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.navigation.ui.AppBarConfiguration;
+
 import com.example.interval.R;
-import com.example.interval.databinding.ActivityMainBinding;
-import net.tbp.interval.MainActivity;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -29,11 +26,11 @@ public class AddNewReminder extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         // set theme for screen
-        setTheme(R.style.Theme_Interval);
+        setTheme(R.style.blackBackground);
         // create the screen
         super.onCreate(savedInstanceState);
         // load content from add_reminder fragment to render the screen
-        setContentView(R.layout.add_reminder);
+        setContentView(R.layout.reminder_info);
 
         // prepare and recieve priority from seekbar
         SeekBar seekbar = findViewById(R.id.prioritySeekBar);
