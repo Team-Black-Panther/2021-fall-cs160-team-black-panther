@@ -61,11 +61,11 @@
     <style name="Theme.Interval.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--the style for set black background color-->
-    <style name="blackBackground" parent="Theme.MaterialComponents.Light">
+    <style name="blackBackground" parent="Theme.Interval">
         <item name="android:windowBackground">@color/black</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:gravity">fill_vertical</item>=
-        <item name="android:statusBarColor">@color/teal_200</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 </resources>
