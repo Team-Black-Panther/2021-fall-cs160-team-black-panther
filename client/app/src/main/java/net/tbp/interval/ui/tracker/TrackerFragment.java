@@ -1,5 +1,6 @@
 package net.tbp.interval.ui.tracker;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,15 +23,45 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.interval.R;
 import com.example.interval.databinding.FragmentTrackerBinding;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.firestore.util.Util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class TrackerFragment extends Fragment {
 
     private TrackerViewModel trackerViewModel;
     private FragmentTrackerBinding binding;
+
+    BarChart barChart;
+    BarData barData;
+    BarDataSet barDataSet;
+    ArrayList barEntries;
+
+    private static final int MAX_X_VALUE = 7;
+    private static final int MAX_Y_VALUE = 100;
+    private static final int MIN_Y_VALUE = 0;
+    private static final String SET_LABEL = "%Day Task completed";
+    private static final String[] DAYS = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" };
+
+    private BarChart chart;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +71,12 @@ public class TrackerFragment extends Fragment {
         binding = FragmentTrackerBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        barChart = (BarChart) root.findViewById(R.id.bargraph);
+
+        BarData data = createChartData();
+        configureChartAppearance();
+        prepareChartData(data);
+
         return root;
     }
 
@@ -48,4 +85,66 @@ public class TrackerFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    private void configureChartAppearance() {
+        barChart.getDescription().setEnabled(false);
+        barChart.setDrawValueAboveBar(false);
+        barChart.setDrawGridBackground(true);
+
+        // X axis
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return DAYS[(int) value];
+            }
+        });
+        // set position to bottom of X asis
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextSize(12f);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawGridLines(false);
+
+        // Y Axis
+        YAxis axisLeft = barChart.getAxisLeft();
+        axisLeft.setGranularity(20f);
+        axisLeft.setAxisMinimum(0);
+        axisLeft.setAxisMaximum(100f);
+        axisLeft.setTextSize(10f);
+        axisLeft.setDrawLabels(true);
+
+        YAxis axisRight = barChart.getAxisRight();
+        axisRight.setAxisMinimum(0);
+        axisRight.setDrawAxisLine(false);
+        axisRight.setDrawGridLines(false);
+        axisRight.setDrawLabels(false);
+    }
+
+    private void prepareChartData(BarData data) {
+        data.setDrawValues(false);
+        barChart.setData(data);
+        barChart.invalidate();
+    }
+
+    private BarData createChartData() {
+        ArrayList<BarEntry> values = new ArrayList<>();
+        for (int i = 0; i < MAX_X_VALUE; i++) {
+            float x = i;
+            float y = i;
+            if(x == 5){
+                y = 80;
+            }
+            values.add(new BarEntry(x, y));
+        }
+
+        BarDataSet set1 = new BarDataSet(values, SET_LABEL);
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1);
+
+        BarData data = new BarData(dataSets);
+        return data;
+    }
+
+
 }
