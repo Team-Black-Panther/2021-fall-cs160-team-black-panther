@@ -49,19 +49,16 @@ public class TrackerFragment extends Fragment {
     private TrackerViewModel trackerViewModel;
     private FragmentTrackerBinding binding;
 
+    // variable that will use to render chart
     BarChart barChart;
     BarData barData;
     BarDataSet barDataSet;
     ArrayList barEntries;
-
     private static final int MAX_X_VALUE = 7;
     private static final int MAX_Y_VALUE = 100;
     private static final int MIN_Y_VALUE = 0;
     private static final String SET_LABEL = "%Day Task completed";
     private static final String[] DAYS = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" };
-
-    private BarChart chart;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -86,6 +83,7 @@ public class TrackerFragment extends Fragment {
         binding = null;
     }
 
+    // set apperace of chart
     private void configureChartAppearance() {
         barChart.getDescription().setEnabled(false);
         barChart.setDrawValueAboveBar(false);
@@ -120,12 +118,14 @@ public class TrackerFragment extends Fragment {
         axisRight.setDrawLabels(false);
     }
 
+    // set data to chart
     private void prepareChartData(BarData data) {
         data.setDrawValues(false);
         barChart.setData(data);
         barChart.invalidate();
     }
 
+    // create data that will use in chart
     private BarData createChartData() {
         ArrayList<BarEntry> values = new ArrayList<>();
         for (int i = 0; i < MAX_X_VALUE; i++) {
@@ -145,6 +145,4 @@ public class TrackerFragment extends Fragment {
         BarData data = new BarData(dataSets);
         return data;
     }
-
-
 }
