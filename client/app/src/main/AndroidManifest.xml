@@ -27,6 +27,7 @@
         </activity>
 
         <activity android:name="net.tbp.interval.ui.reminder.AddNewReminder" />
+        <activity android:name="net.tbp.interval.ui.reminder.EditReminder" />
         <provider android:name="net.tbp.interval.ui.reminder.ReminderProvider"
             android:authorities="@string/reminder_provider">
         </provider>

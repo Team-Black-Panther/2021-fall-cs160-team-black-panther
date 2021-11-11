@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -126,12 +127,21 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                         }
                     });
 
-                    // this function will add new intent to pop up to show description
+                    // this function will add new intent to pop up to show edit reminder
                     holder.layout.setOnClickListener(new View.OnClickListener() {
                         // user select a row
                         @Override
                         public void onClick(View view) {
                             Log.d(TAG, "select reminder to show: " + (position) + " " + (row.getName()));
+                            // initial intent that will use to call EditReminder class to render screen to add new reminder
+                            Intent editReminderIntent = new Intent(context, EditReminder.class);
+                            // data that will use to sendData to EditReminder.class
+                            editReminderIntent.putExtra("id", reminderList.get(finalCount).getReminderId());
+                            editReminderIntent.putExtra("name", reminderList.get(finalCount).getName());
+                            editReminderIntent.putExtra("description", reminderList.get(finalCount).getDescription());
+                            editReminderIntent.putExtra("priority", reminderList.get(finalCount).getPriority());
+                            editReminderIntent.putExtra("dueDate", reminderList.get(finalCount).getDuedate().getTime());
+                            context.startActivity(editReminderIntent);
                         }
                     });
                 }

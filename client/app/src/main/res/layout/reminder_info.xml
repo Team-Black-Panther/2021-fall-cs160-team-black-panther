@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusableInTouchMode="true" >
 
     <EditText
         android:id="@+id/reminderTitle_label"
@@ -16,7 +18,7 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Add reminder"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +61,7 @@
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Add description"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
