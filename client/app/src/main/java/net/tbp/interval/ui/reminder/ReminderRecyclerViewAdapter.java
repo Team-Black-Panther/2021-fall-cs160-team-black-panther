@@ -114,11 +114,12 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                             if (holder.checkBox.isChecked()) {
                                 // change status of reminder to true
                                 reminderList.get(finalCount).setStatus(true);
-
+                                Date currentDate = new Date();
                                 // update data to sql
                                 ContentValues values = new ContentValues();
                                 // name that user will add to the database
                                 values.put(ReminderProvider.STATUS, true);
+                                values.put(ReminderProvider.COMPLETEDDATE, currentDate.getTime());
                                 context.getContentResolver().update(ReminderProvider.CONTENT_URI, values, ReminderProvider._ID + "="
                                         + reminderList.get(finalCount).getReminderId(), null);
                                 // update data
