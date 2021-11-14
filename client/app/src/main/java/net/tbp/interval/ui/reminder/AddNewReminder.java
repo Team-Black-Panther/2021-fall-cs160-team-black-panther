@@ -106,6 +106,7 @@ public class AddNewReminder extends Activity {
                 values.put(ReminderProvider.STATUS, false);
                 values.put(ReminderProvider.PRIORITY, priority);
                 values.put(ReminderProvider.DUEDATE, dueDate.getTime());
+                values.put(ReminderProvider.COMPLETEDDATE, 0);
                 // load the uri to insert data
                 Uri uri = getContentResolver().insert(ReminderProvider.CONTENT_URI, values);
                 // go back to prev screen
