@@ -11,14 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Class for encapsulating a singular Event object.
+ * Class for encapsulating a singular Task object.
  * 
  * @author Hugo Wong
  *
  */
 @Entity
-@Table(name = "event")
-public class Event {
+@Table(name = "task")
+public class Task {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -39,39 +39,41 @@ public class Event {
 	@Column(name = "category")
 	private String category;
 
+	@Column(name = "priority")
+	private Integer priority;
+
 	// date-time format: 2011-12-03T10:15:30+01:00
-	@Column(name = "start")
-	private LocalDateTime startTime;
+	@Column(name = "deadline")
+	private LocalDateTime deadline;
 
-	@Column(name = "end")
-	private LocalDateTime endTime;
-
-	public Event() {
-		this(0, 0, "ERROR", "ERROR", "ERROR", "ERROR", null, null);
-
+	/**
+	 * No args constructor (do not use).m
+	 */
+	public Task() {
+		this(0, 0, "ERROR", "ERROR", "ERROR", "ERROR", 0, null);
 	}
 
 	/**
-	 * All arg constructor.
+	 * All args constructor.
 	 * 
 	 * @param id
+	 * @param owner
 	 * @param name
 	 * @param description
 	 * @param location
-	 * @param category
-	 * @param alarm
-	 * @param startTime
-	 * @param endTime
+	 * @param priority
+	 * @param deadline
 	 */
-	public Event(Integer id, Integer owner, String name, String description, String location, String category,
-			LocalDateTime startTime, LocalDateTime endTime) {
+	public Task(Integer id, Integer owner, String name, String description, String location, String category,
+			Integer priority, LocalDateTime deadline) {
 		this.id = id;
+		this.owner = owner;
 		this.name = name;
 		this.description = description;
 		this.location = location;
 		this.category = category;
-		this.startTime = startTime;
-		this.endTime = endTime;
+		this.priority = priority;
+		this.deadline = deadline;
 	}
 
 	/**
@@ -89,16 +91,16 @@ public class Event {
 	}
 
 	/**
-	 * @return the UID of the owner
+	 * @return the owner
 	 */
 	public Integer getOwner() {
 		return owner;
 	}
 
 	/**
-	 * @param id the new UID to set
+	 * @param owner the owner to set
 	 */
-	public void setOwner(int owner) {
+	public void setOwner(Integer owner) {
 		this.owner = owner;
 	}
 
@@ -159,36 +161,36 @@ public class Event {
 	}
 
 	/**
-	 * @return the startTime
+	 * @return the priority
 	 */
-	public LocalDateTime getStartTime() {
-		return startTime;
+	public Integer getPriority() {
+		return priority;
 	}
 
 	/**
-	 * @param startTime the startTime to set
+	 * @param priority the priority to set
 	 */
-	public void setStartTime(LocalDateTime startTime) {
-		this.startTime = startTime;
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 
 	/**
-	 * @return the endTime
+	 * @return the deadline
 	 */
-	public LocalDateTime getEndTime() {
-		return endTime;
+	public LocalDateTime getDeadline() {
+		return deadline;
 	}
 
 	/**
-	 * @param endTime the endTime to set
+	 * @param deadline the deadline to set
 	 */
-	public void setEndTime(LocalDateTime endTime) {
-		this.endTime = endTime;
+	public void setDeadline(LocalDateTime deadline) {
+		this.deadline = deadline;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(category, description, endTime, id, location, name, startTime);
+		return Objects.hash(deadline, description, id, location, name, owner, priority);
 	}
 
 	@Override
@@ -199,11 +201,11 @@ public class Event {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Event other = (Event) obj;
-		return Objects.equals(category, other.category) && Objects.equals(description, other.description)
-				&& Objects.equals(endTime, other.endTime) && Objects.equals(id, other.id)
-				&& Objects.equals(location, other.location) && Objects.equals(name, other.name)
-				&& Objects.equals(startTime, other.startTime);
+		Task other = (Task) obj;
+		return Objects.equals(deadline, other.deadline) && Objects.equals(description, other.description)
+				&& Objects.equals(id, other.id) && Objects.equals(location, other.location)
+				&& Objects.equals(name, other.name) && Objects.equals(owner, other.owner)
+				&& Objects.equals(priority, other.priority);
 	}
 
 }

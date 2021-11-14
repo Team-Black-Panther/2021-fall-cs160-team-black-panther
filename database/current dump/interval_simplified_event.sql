@@ -23,17 +23,16 @@ DROP TABLE IF EXISTS `event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `event` (
-  `eventID` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `owner` int unsigned NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
   `location` varchar(45) DEFAULT NULL,
   `category` varchar(45) DEFAULT NULL,
-  `alarm` varchar(45) DEFAULT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
-  `id` int NOT NULL,
-  PRIMARY KEY (`eventID`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -43,7 +42,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES (1,1,'Dishes','Do the dishes.','Home','Housework','none','2007-05-08 12:35:29','2007-05-08 12:35:29',0),(2,1,'Homework','Do my homework.','Home','Schoolwork','none','2007-05-08 12:35:29','2007-05-08 12:35:29',0),(3,2,'Meeting','Team meeting stuff.','Not Home','Schoolwork','none','2007-05-08 12:35:29','2007-05-08 12:35:29',0);
+INSERT INTO `event` VALUES (1,1,'Dishes','Do the dishes.','Home','Housework','2007-05-08 12:35:29','2007-05-08 12:35:29'),(2,1,'Homework','Do my homework.','Home','Schoolwork','2007-05-08 12:35:29','2007-05-08 12:35:29'),(3,2,'Meeting','Team meeting stuff.','Not Home','Schoolwork','2007-05-08 12:35:29','2007-05-08 12:35:29');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-31 19:32:39
+-- Dump completed on 2021-11-13 19:37:14

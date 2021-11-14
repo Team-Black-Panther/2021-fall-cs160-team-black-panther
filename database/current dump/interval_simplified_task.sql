@@ -16,25 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `hibernate_sequence`
+-- Table structure for table `task`
 --
 
-DROP TABLE IF EXISTS `hibernate_sequence`;
+DROP TABLE IF EXISTS `task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `task` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `owner` int(10) unsigned zerofill NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `priority` int(10) unsigned zerofill NOT NULL,
+  `deadline` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hibernate_sequence`
+-- Dumping data for table `task`
 --
 
-LOCK TABLES `hibernate_sequence` WRITE;
-/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (1);
-/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+LOCK TABLES `task` WRITE;
+/*!40000 ALTER TABLE `task` DISABLE KEYS */;
+INSERT INTO `task` VALUES (1,0000000001,'t2','none','none','none',0000000000,'2007-05-08 12:35:29'),(2,0000000002,'t3','none','none','none',0000000000,'2007-05-08 12:35:29'),(3,0000000002,'t4','none','none','none',0000000000,'2007-05-08 12:35:29'),(4,0000000001,'t1','none','none','none',0000000000,'2007-05-08 12:35:29');
+/*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -46,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-31 19:32:39
+-- Dump completed on 2021-11-13 19:37:13
