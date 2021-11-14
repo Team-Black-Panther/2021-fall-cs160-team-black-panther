@@ -69,8 +69,13 @@ public class MainController {
 
 	@DeleteMapping(path = "/{uid}")
 	public @ResponseBody ResponseEntity<Integer> deleteUser(@PathVariable Integer uid) {
-		userRepo.deleteById(uid);
-		return new ResponseEntity<Integer>(uid, HttpStatus.ACCEPTED);
+		Optional<UserProfile> target = userRepo.findById(uid);
+		if (target.isPresent()) {
+			userRepo.deleteById(uid);
+			return new ResponseEntity<Integer>(uid, HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	// Current Events
@@ -99,8 +104,13 @@ public class MainController {
 	@DeleteMapping(path = "/{uid}/currentevent/{eventid}")
 	public @ResponseBody ResponseEntity<Integer> deleteCurrentEvent(@PathVariable Integer uid,
 			@PathVariable Integer eventid) {
-		currentEventRepo.deleteById(eventid);
-		return new ResponseEntity<Integer>(eventid, HttpStatus.ACCEPTED);
+		Optional<Event> target = currentEventRepo.findById(eventid);
+		if (target.isPresent()) {
+			currentEventRepo.deleteById(eventid);
+			return new ResponseEntity<Integer>(eventid, HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	// Active Tasks
@@ -129,8 +139,13 @@ public class MainController {
 	@DeleteMapping(path = "/{uid}/task/{taskid}")
 	public @ResponseBody ResponseEntity<Integer> deleteActiveTask(@PathVariable Integer uid,
 			@PathVariable Integer taskid) {
-		taskRepo.deleteById(taskid);
-		return new ResponseEntity<Integer>(taskid, HttpStatus.ACCEPTED);
+		Optional<Task> target = taskRepo.findById(taskid);
+		if (target.isPresent()) {
+			taskRepo.deleteById(taskid);
+			return new ResponseEntity<Integer>(taskid, HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 }
