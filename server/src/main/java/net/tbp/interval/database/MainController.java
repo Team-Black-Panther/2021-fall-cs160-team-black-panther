@@ -40,14 +40,18 @@ public class MainController {
 	// Basic User Management
 	@GetMapping(path = "/{username}")
 	public @ResponseBody ResponseEntity<Integer> getUID(@PathVariable String username) {
-		return new ResponseEntity<Integer>(userRepo.findProfileByName(username).getId(), HttpStatus.OK);
+		UserProfile target = userRepo.findProfileByName(username);
+		if (target != null) {
+			return new ResponseEntity<Integer>(userRepo.findProfileByName(username).getId(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PostMapping(path = "/register")
 	public @ResponseBody ResponseEntity<Integer> registerUser(@RequestBody UserProfile newProfile) {
-		userRepo.save(newProfile);
-		newProfile.setId(userRepo.findProfileByName(newProfile.getUserName()).getId());
-		return new ResponseEntity<Integer>(newProfile.getId(), HttpStatus.ACCEPTED);
+		UserProfile createdProfile = userRepo.save(newProfile);
+		return new ResponseEntity<Integer>(createdProfile.getId(), HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping(path = "/{uid}")
@@ -76,11 +80,11 @@ public class MainController {
 	}
 
 	@PostMapping(path = "/{uid}/currentevent")
-	public @ResponseBody ResponseEntity<Event> addNewCurrentEvent(@RequestBody Event newEvent,
+	public @ResponseBody ResponseEntity<Integer> addNewCurrentEvent(@RequestBody Event newEvent,
 			@PathVariable Integer uid) {
 		newEvent.setOwner(uid);
-		currentEventRepo.save(newEvent);
-		return new ResponseEntity<Event>(newEvent, HttpStatus.ACCEPTED);
+		Integer newId = currentEventRepo.save(newEvent).getId();
+		return new ResponseEntity<Integer>(newId, HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping(path = "/{uid}/currentevent/{eventid}")
@@ -106,10 +110,11 @@ public class MainController {
 	}
 
 	@PostMapping(path = "/{uid}/task")
-	public @ResponseBody ResponseEntity<Task> addNewActiveTask(@RequestBody Task newTask, @PathVariable Integer uid) {
+	public @ResponseBody ResponseEntity<Integer> addNewActiveTask(@RequestBody Task newTask,
+			@PathVariable Integer uid) {
 		newTask.setOwner(uid);
-		taskRepo.save(newTask);
-		return new ResponseEntity<Task>(newTask, HttpStatus.ACCEPTED);
+		Integer newId = taskRepo.save(newTask).getId();
+		return new ResponseEntity<Integer>(newId, HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping(path = "/{uid}/task/{taskid}")
