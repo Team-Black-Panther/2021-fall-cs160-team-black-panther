@@ -22,23 +22,24 @@ import java.util.HashMap;
 // class that will support to CRUD reminderDB
 public class ReminderProvider extends ContentProvider {
     // provider name
-    static final String PROVIDER_NAME = "net.tbp.interval.mycontentprovider.ReminderInfo";
+    public static final String PROVIDER_NAME = "net.tbp.interval.mycontentprovider.ReminderInfo";
     // URL
-    static final String URL = "content://" + PROVIDER_NAME + "/reminders";
+    public static final String URL = "content://" + PROVIDER_NAME + "/reminders";
     // set content uri
-    static final Uri CONTENT_URI = Uri.parse(URL);
+    public static final Uri CONTENT_URI = Uri.parse(URL);
 
     // index that will store in the database
-    static final String _ID = "_id";
-    static final String NAME = "name";
-    static final String DESCRIPTION = "description";
-    static final String STATUS = "status";
-    static final String PRIORITY = "priority";
-    static final String DUEDATE = "duedate";
+    public static final String _ID = "_id";
+    public static final String NAME = "name";
+    public static final String DESCRIPTION = "description";
+    public static final String STATUS = "status";
+    public static final String PRIORITY = "priority";
+    public static final String DUEDATE = "duedate";
+    public static final String COMPLETEDDATE = "completeddate";
 
     private static HashMap<String, String> REMINDERS_PROJECTION_MAP;
-    static final int REMINDERS = 1;
-    static final int REMINDERS_ID = 2;
+    public static final int REMINDERS = 1;
+    public static final int REMINDERS_ID = 2;
 
     static final UriMatcher uriMatcher;
     static {
@@ -63,7 +64,8 @@ public class ReminderProvider extends ContentProvider {
                     " description TEXT, " +
                     " status BOOLEAN, " +
                     " priority INTEGER, "+
-                    " duedate DATE );";
+                    " duedate DATE, "+
+                    " completeddate DATE );";
 
     // Helper class that actually create and manage the provider's underlying data repository
     private static class DatabaseHelper extends SQLiteOpenHelper{
