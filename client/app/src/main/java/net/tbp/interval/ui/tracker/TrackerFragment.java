@@ -46,7 +46,7 @@ public class TrackerFragment extends Fragment implements LoaderManager.LoaderCal
     //variable that relate to date
     private Date date =  new Date();
     Calendar cal = Calendar.getInstance();
-    int dayOfTheWeek = Calendar.DAY_OF_WEEK;
+    int dayOfTheWeek = cal.get(Calendar.DAY_OF_WEEK);
     Date weekMedalStart;
     Date twoWeekMedalStart;
     Date threeWeekMedalStart;
@@ -250,6 +250,8 @@ public class TrackerFragment extends Fragment implements LoaderManager.LoaderCal
 
     // func that will use to set start and end goal date
     public void setGoalDate(){
+        Log.d("dau of the week", String.valueOf(cal.DAY_OF_WEEK));
+        Log.d("dau of the week", String.valueOf(cal));
         // set start date that will use in goal path
         cal.set(Calendar.MINUTE, 1);
         cal.set(Calendar.HOUR, 12);
