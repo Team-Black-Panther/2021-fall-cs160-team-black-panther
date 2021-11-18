@@ -50,7 +50,7 @@ public class Task {
 	 * No args constructor (do not use).m
 	 */
 	public Task() {
-		this(0, 0, "ERROR", "ERROR", "ERROR", "ERROR", 0, null);
+		this(0, 0, null, null, null, null, -1, null);
 	}
 
 	/**
@@ -206,6 +206,33 @@ public class Task {
 				&& Objects.equals(id, other.id) && Objects.equals(location, other.location)
 				&& Objects.equals(name, other.name) && Objects.equals(owner, other.owner)
 				&& Objects.equals(priority, other.priority);
+	}
+
+	/**
+	 * Replace all attributes in this task with non-null values from newTask.
+	 * 
+	 * @param newTask
+	 */
+	public void updateAttributes(Task newTask) {
+		if (newTask.name != null) {
+			this.name = newTask.name;
+		}
+		if (newTask.description != null) {
+			this.description = newTask.description;
+		}
+		if (newTask.location != null) {
+			this.location = newTask.location;
+		}
+		if (newTask.category != null) {
+			this.category = newTask.category;
+		}
+		if (newTask.priority > -1) {
+			this.priority = newTask.priority;
+		}
+		if (newTask.deadline != null) {
+			this.deadline = newTask.deadline;
+		}
+
 	}
 
 }

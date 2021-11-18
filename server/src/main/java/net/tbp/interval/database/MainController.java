@@ -50,7 +50,7 @@ public class MainController {
 
 	// check if this object ID (task, event, reminder, etc.) is valid
 	private static boolean isObjIDValid(Integer objID) {
-		return objID > -1;
+		return objID > 0;
 	}
 
 	// Basic User Management
@@ -153,11 +153,19 @@ public class MainController {
 			@PathVariable Integer uid, @PathVariable Integer eventid) {
 		if (!isUIDValid(uid) || !isObjIDValid(eventid)) {
 			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		} else if (!userRepo.findById(uid).isPresent()) {
+			// UID not in use
+			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+		} else {
+			Optional<Event> oldEventOp = currentEventRepo.findById(eventid);
+			if (!oldEventOp.isPresent()) {
+				return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+			}
+			Event oldEvent = oldEventOp.get();
+			oldEvent.updateAttributes(newEvent);
+			currentEventRepo.save(oldEvent);
+			return new ResponseEntity<Integer>(HttpStatus.ACCEPTED);
 		}
-		currentEventRepo.deleteById(eventid);
-		newEvent.setOwner(uid);
-		currentEventRepo.save(newEvent);
-		return new ResponseEntity<Integer>(HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping(path = "/{uid}/currentevent/{eventid}")
@@ -216,9 +224,13 @@ public class MainController {
 			// UID not in use
 			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
 		} else {
-			taskRepo.deleteById(taskid);
-			newTask.setOwner(uid);
-			taskRepo.save(newTask);
+			Optional<Task> oldEventOp = taskRepo.findById(taskid);
+			if (!oldEventOp.isPresent()) {
+				return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
+			}
+			Task oldTask = oldEventOp.get();
+			oldTask.updateAttributes(newTask);
+			taskRepo.save(oldTask);
 			return new ResponseEntity<Integer>(HttpStatus.ACCEPTED);
 		}
 	}

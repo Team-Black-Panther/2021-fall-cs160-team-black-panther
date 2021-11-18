@@ -53,7 +53,7 @@ public class UserProfile {
 	 * Default constructor.
 	 */
 	public UserProfile() {
-		this(0, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR");
+		this(0, null, null, null, null, null, null);
 	}
 
 	/**
