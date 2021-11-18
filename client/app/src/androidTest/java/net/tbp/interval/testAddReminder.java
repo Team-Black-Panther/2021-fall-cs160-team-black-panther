@@ -61,9 +61,10 @@ public class testAddReminder {
                                         2),
                                 0),
                         isDisplayed()));
-        // perform click
+        // perform click addNewReminder
         actionMenuItemView.perform(click());
 
+        // select editText reminder name to edit
         ViewInteraction editText = onView(
                 allOf(withId(R.id.reminderTitle_label),
                         childAtPosition(
@@ -75,6 +76,7 @@ public class testAddReminder {
         // add reminder name
         editText.perform(replaceText("Reminder1"), closeSoftKeyboard());
 
+        // select editText reminder description to edit
         ViewInteraction editText2 = onView(
                 allOf(withId(R.id.reminderDescription_label),
                         childAtPosition(
