@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:padding="6dip">
+
+    <TextView
+        android:id="@+id/calendarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center_vertical"
+        android:text="reminder"
+        android:textSize="18dp" />
+
+
+    <TextView
+        android:id="@+id/calendarDuedate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/calendarTitle"
+        android:gravity="center_vertical"
+        android:text="date"
+        android:textAlignment="textEnd"
+        android:textColor="@color/red"
+        android:textSize="14dp"
+        tools:ignore="RtlCompat" />
+</RelativeLayout>
