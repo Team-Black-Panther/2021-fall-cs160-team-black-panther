@@ -250,8 +250,6 @@ public class TrackerFragment extends Fragment implements LoaderManager.LoaderCal
 
     // func that will use to set start and end goal date
     public void setGoalDate(){
-        Log.d("dau of the week", String.valueOf(cal.DAY_OF_WEEK));
-        Log.d("dau of the week", String.valueOf(cal));
         // set start date that will use in goal path
         cal.set(Calendar.MINUTE, 1);
         cal.set(Calendar.HOUR, 12);
