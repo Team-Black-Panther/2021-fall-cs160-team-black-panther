@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "013e9273-cb72-49d1-9d1a-6d4b8982facd",
+		"name": "Interval Backend API Tests for Task API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "An existing, valid uid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/1/task",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID field is empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user//task",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID is 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user//task",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID < 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user//task",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID not in use",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/7/task",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"7",
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non-Integer in the UID field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/asdf/task",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"asdf",
+						"task"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

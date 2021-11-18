@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "8c685812-e013-4451-abe4-157405a61c10",
+		"name": "Interval Backend API Tests for CurrentEvent API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "An existing, valid uid Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/1/currentevent",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1",
+						"currentevent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID field is empty Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user//currentevent",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"",
+						"currentevent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID is 0 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/0/currentevent",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"0",
+						"currentevent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID < 0 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/-7/currentevent",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"-7",
+						"currentevent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UID not in use Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/7/currentevent",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"7",
+						"currentevent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Non-Integer in the UID field Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/asdf/currentevent",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"asdf",
+						"currentevent"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

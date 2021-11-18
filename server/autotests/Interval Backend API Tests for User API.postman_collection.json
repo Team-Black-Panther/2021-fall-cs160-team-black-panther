@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "a74e9430-0871-49ab-89fe-c3db0c461bf0",
+		"name": "Interval Backend API Tests for User API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "An existing, valid username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    console.log(pm.response);\r",
+							"    pm.expect(pm.response.text()).to.equals(\"1\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/jd123",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"jd123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/clown",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"clown"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty username field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "A username that does not exist on the database",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/idonotexist12345",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"idonotexist12345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "A username that is too long (>45 chars)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/qwertiongouifdnogiofdisgnofdsnsgosadfhisdhsefhuiewhigiuagbasyiubfiouabwiouebwu738921743982174982374932423",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"qwertiongouifdnogiofdisgnofdsnsgosadfhisdhsefhuiewhigiuagbasyiubfiouabwiouebwu738921743982174982374932423"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "The username field has spaces",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/jd 123",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"jd 123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "The username field has a reserved character (:/?#[]@)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://24.6.100.179:8080/user/?2fds2@r3",
+					"protocol": "http",
+					"host": [
+						"24",
+						"6",
+						"100",
+						"179"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						""
+					],
+					"query": [
+						{
+							"key": "2fds2@r3",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

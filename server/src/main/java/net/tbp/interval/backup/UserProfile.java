@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Class for encapsulating a singlar user profile.
  * 
@@ -23,21 +25,27 @@ public class UserProfile {
 	@Column(name = "id")
 	private Integer id;
 
+	@JsonProperty("username")
 	@Column(name = "username")
-	String userName;
+	String username;
 	
+	@JsonProperty("firstName")
 	@Column(name = "firstName")
 	String firstName;
 
+	@JsonProperty("lastName")
 	@Column(name = "lastName")
 	String lastName;
 
+	@JsonProperty("passhash")
 	@Column(name = "passhash")
 	String passhash;
 
+	@JsonProperty("email")
 	@Column(name = "email")
 	String email;
 
+	@JsonProperty("phoneNumber")
 	@Column(name = "phoneNumber")
 	String phoneNumber;
 
@@ -45,7 +53,7 @@ public class UserProfile {
 	 * Default constructor.
 	 */
 	public UserProfile() {
-		this(0, "ERROR", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR");
+		this(0, null, null, null, null, null, null);
 	}
 
 	/**
@@ -54,7 +62,7 @@ public class UserProfile {
 	 * @param id
 	 * @param firstName
 	 * @param lastName
-	 * @param userName
+	 * @param username
 	 * @param passhash
 	 * @param email
 	 * @param phoneNumber
@@ -64,7 +72,7 @@ public class UserProfile {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userName = userName;
+		this.username = userName;
 		this.passhash = passhash;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
@@ -87,6 +95,7 @@ public class UserProfile {
 	/**
 	 * @return the firstName
 	 */
+	@JsonProperty
 	public String getFirstName() {
 		return firstName;
 	}
@@ -113,17 +122,17 @@ public class UserProfile {
 	}
 
 	/**
-	 * @return the userName
+	 * @return the username
 	 */
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	/**
-	 * @param userName the userName to set
+	 * @param username the username to set
 	 */
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	/**
@@ -170,7 +179,7 @@ public class UserProfile {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, id, lastName, passhash, phoneNumber, userName);
+		return Objects.hash(email, firstName, id, lastName, passhash, phoneNumber, username);
 	}
 
 	@Override
@@ -185,7 +194,7 @@ public class UserProfile {
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
 				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName)
 				&& Objects.equals(passhash, other.passhash) && Objects.equals(phoneNumber, other.phoneNumber)
-				&& Objects.equals(userName, other.userName);
+				&& Objects.equals(username, other.username);
 	}
 
 }

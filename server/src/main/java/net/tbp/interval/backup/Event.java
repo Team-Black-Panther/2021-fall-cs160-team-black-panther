@@ -47,7 +47,7 @@ public class Event {
 	private LocalDateTime endTime;
 
 	public Event() {
-		this(0, 0, "ERROR", "ERROR", "ERROR", "ERROR", null, null);
+		this(0, 0, null, null, null, null, null, null);
 
 	}
 
@@ -66,6 +66,7 @@ public class Event {
 	public Event(Integer id, Integer owner, String name, String description, String location, String category,
 			LocalDateTime startTime, LocalDateTime endTime) {
 		this.id = id;
+		this.owner = owner;
 		this.name = name;
 		this.description = description;
 		this.location = location;
@@ -204,6 +205,32 @@ public class Event {
 				&& Objects.equals(endTime, other.endTime) && Objects.equals(id, other.id)
 				&& Objects.equals(location, other.location) && Objects.equals(name, other.name)
 				&& Objects.equals(startTime, other.startTime);
+	}
+
+	/**
+	 * Replace all attributes in this event with non-null values from newEvent.
+	 * 
+	 * @param newEvent
+	 */
+	public void updateAttributes(Event newEvent) {
+		if (newEvent.name != null) {
+			this.name = newEvent.name;
+		}
+		if (newEvent.description != null) {
+			this.description = newEvent.description;
+		}
+		if (newEvent.location != null) {
+			this.location = newEvent.location;
+		}
+		if (newEvent.category != null) {
+			this.category = newEvent.category;
+		}
+		if (newEvent.startTime != null) {
+			this.startTime = newEvent.startTime;
+		}
+		if (newEvent.endTime != null) {
+			this.endTime = newEvent.endTime;
+		}
 	}
 
 }
