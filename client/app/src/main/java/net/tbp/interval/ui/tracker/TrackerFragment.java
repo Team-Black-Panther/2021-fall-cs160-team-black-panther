@@ -250,6 +250,7 @@ public class TrackerFragment extends Fragment implements LoaderManager.LoaderCal
 
     // func that will use to set start and end goal date
     public void setGoalDate(){
+        Log.d("setGoalDate", "check start and end date that will use to draw goal path");
         // set start date that will use in goal path
         cal.set(Calendar.MINUTE, 1);
         cal.set(Calendar.HOUR, 12);
