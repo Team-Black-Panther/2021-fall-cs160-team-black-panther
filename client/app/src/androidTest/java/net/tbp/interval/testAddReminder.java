@@ -30,13 +30,16 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+// this class will use to automatic test add new reminder with all information
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class testAddReminder {
 
+    // start load MainActivity
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    // select the button nav to go reminder
     @Test
     public void testAddReminder() {
         ViewInteraction bottomNavigationItemView = onView(
@@ -49,6 +52,7 @@ public class testAddReminder {
                         isDisplayed()));
         bottomNavigationItemView.perform(click());
 
+        // click addReminder botton
         ViewInteraction actionMenuItemView = onView(
                 allOf(withId(R.id.addReminderBtn), withContentDescription("addNewReminder"),
                         childAtPosition(
@@ -57,6 +61,7 @@ public class testAddReminder {
                                         2),
                                 0),
                         isDisplayed()));
+        // perform click
         actionMenuItemView.perform(click());
 
         ViewInteraction editText = onView(
@@ -67,6 +72,7 @@ public class testAddReminder {
                                         0),
                                 0),
                         isDisplayed()));
+        // add reminder name
         editText.perform(replaceText("Reminder1"), closeSoftKeyboard());
 
         ViewInteraction editText2 = onView(
@@ -77,6 +83,7 @@ public class testAddReminder {
                                         0),
                                 3),
                         isDisplayed()));
+        // add reminder description
         editText2.perform(replaceText("Description1"), closeSoftKeyboard());
 
         ViewInteraction editText3 = onView(
@@ -89,6 +96,7 @@ public class testAddReminder {
                         isDisplayed()));
         editText3.perform(pressImeActionButton());
 
+        // click save
         ViewInteraction button = onView(
                 allOf(withId(R.id.saveAddNewReminderBtn), withText("Save"),
                         childAtPosition(
