@@ -1,11 +1,13 @@
     package net.tbp.interval.ui.calendar;
 
     import android.app.Activity;
+    import android.content.Intent;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.LayoutInflater;
     import android.view.Menu;
     import android.view.MenuInflater;
+    import android.view.MenuItem;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.Button;
@@ -25,11 +27,14 @@
     import com.android.volley.toolbox.Volley;
     import com.example.interval.R;
     import com.example.interval.databinding.FragmentCalendarBinding;
-    
+
+    import net.tbp.interval.ui.reminder.AddNewReminder;
+
     public class CalendarFragment extends Fragment {
 
         private CalendarViewModel calendarViewModel;
         private FragmentCalendarBinding binding;
+        private String TAGSQL = "useraddnewcalendar";
 
         public View onCreateView(@NonNull LayoutInflater inflater,
                                  ViewGroup container, Bundle savedInstanceState) {
@@ -99,6 +104,21 @@
             // Inflate the menu items for use in the action bar
             inflater.inflate(R.menu.calendar_menu, menu);
             super.onCreateOptionsMenu(menu, inflater);
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                // this will use to add new reminder
+                case R.id.addCalendarBtn:
+                    // console that user click add new reminder btn
+                    Log.d(TAGSQL, "user click add new reminder");
+                    // initial intent that will use to call AddNewReminder class to render screen to add new reminder
+                    Intent informationIntent = new Intent(getContext(), AddEventsToCalendar.class);
+                    startActivity(informationIntent);
+                    return true;
+            }
+            return super.onOptionsItemSelected(item);
         }
 
 

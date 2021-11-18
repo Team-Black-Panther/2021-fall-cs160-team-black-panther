@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="331db118-b828-44c9-b62b-e93cd959ee3d" name="Default Changelist" comment="" />
+    <list default="true" id="331db118-b828-44c9-b62b-e93cd959ee3d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/calendar/AddEventsToCalendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/app/src/main/res/layout/add_event_on_calendar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/calendar/CalendarFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/net/tbp/interval/ui/calendar/CalendarFragment.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

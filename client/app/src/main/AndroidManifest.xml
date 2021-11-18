@@ -28,8 +28,17 @@
 
         <activity android:name="net.tbp.interval.ui.reminder.AddNewReminder" />
         <activity android:name="net.tbp.interval.ui.reminder.EditReminder" />
+        <activity android:name="net.tbp.interval.ui.calendar.EditCalendar" />
+        <activity android:name="net.tbp.interval.ui.calendar.AddEventsToCalendar" />
         <provider android:name="net.tbp.interval.ui.reminder.ReminderProvider"
             android:authorities="@string/reminder_provider">
         </provider>
+        <provider android:name="net.tbp.interval.ui.calendar.CalendarProvider"
+            android:authorities="@string/calendar_provider">
+        </provider>
+<!--        <provider android:name="net.tbp.interval.ui.reminder.ReminderProvider"-->
+<!--            android:authorities="@string/reminder_provider">-->
+
+<!--        </provider>-->
     </application>
 </manifest>
