@@ -21,12 +21,6 @@ import androidx.loader.content.Loader;
 
 import com.example.interval.databinding.FragmentBackupBinding;
 
-import net.tbp.interval.ui.reminder.AddNewReminder;
-import net.tbp.interval.ui.reminder.Reminder;
-import net.tbp.interval.ui.reminder.ReminderProvider;
-
-import java.util.Date;
-
 public class BackupFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
     String TAG = "BackupFragment";
     String TAGSQL = "UserSQL";
