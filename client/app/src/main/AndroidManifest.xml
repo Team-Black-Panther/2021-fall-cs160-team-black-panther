@@ -30,15 +30,17 @@
         <activity android:name="net.tbp.interval.ui.reminder.EditReminder" />
         <activity android:name="net.tbp.interval.ui.calendar.EditCalendar" />
         <activity android:name="net.tbp.interval.ui.calendar.AddEventsToCalendar" />
+        <activity android:name="net.tbp.interval.ui.backup.SigninSignUp" />
+        <activity android:name="net.tbp.interval.ui.backup.Signin" />
+        <activity android:name="net.tbp.interval.ui.backup.Signup" />
         <provider android:name="net.tbp.interval.ui.reminder.ReminderProvider"
             android:authorities="@string/reminder_provider">
         </provider>
         <provider android:name="net.tbp.interval.ui.calendar.CalendarProvider"
             android:authorities="@string/calendar_provider">
         </provider>
-<!--        <provider android:name="net.tbp.interval.ui.reminder.ReminderProvider"-->
-<!--            android:authorities="@string/reminder_provider">-->
-
-<!--        </provider>-->
+        <provider android:name="net.tbp.interval.ui.backup.UserProvider"
+            android:authorities="@string/user_provider">
+        </provider>
     </application>
 </manifest>
