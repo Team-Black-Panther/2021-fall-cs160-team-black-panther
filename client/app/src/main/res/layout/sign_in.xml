@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:clickable="true"
+    android:id="@+id/signinFragment"
     android:focusableInTouchMode="true">
-
 
     <ImageView
         android:id="@+id/signinImg"
@@ -38,17 +38,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
-        android:text="User ID/Email"
+        android:text="Email"
+        android:textSize="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signinImg" />
 
     <EditText
-        android:id="@+id/userIDEditText"
+        android:id="@+id/emailSignin"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:textSize="16dp"
         android:background="@color/light_grey"
         android:ems="10"
         android:inputType="textPersonName"
@@ -65,18 +67,20 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:text="Password"
+        android:textSize="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userIDEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailSignin" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/passwordSignin"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/light_grey"
         android:ems="10"
+        android:textSize="16dp"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +96,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordSignin" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
@@ -127,4 +131,16 @@
         app:layout_constraintEnd_toStartOf="@+id/gotoSignupBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submitSigninBtn" />
+
+    <TextView
+        android:id="@+id/signinStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/red"
+        android:textSize="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

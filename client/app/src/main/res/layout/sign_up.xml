@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signupFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -62,21 +63,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
-        android:text="User ID/Email"
+        android:text="Email"
+        android:textSize="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName1"
+        android:id="@+id/emailSignup"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/light_grey"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -88,12 +89,13 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:text="Password"
+        android:textSize="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName1" />
+        app:layout_constraintTop_toBottomOf="@+id/emailSignup" />
 
     <EditText
-        android:id="@+id/userIDEditText"
+        android:id="@+id/passwordSignup"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -102,7 +104,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="@color/med_grey"
-        android:textSize="12dp"
+        android:textSize="16dp"
+        android:hint="Password must be more than 8 characters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -114,12 +117,13 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:text="Confirm Password"
+        android:textSize="16dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userIDEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordSignup" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/confirmPasswordSignup"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -128,7 +132,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="@color/med_grey"
-        android:textSize="12dp"
+        android:textSize="16dp"
+        android:hint="Re-type your password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -143,6 +148,18 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordSignup" />
+
+    <TextView
+        android:id="@+id/signupStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/red"
+        android:textSize="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitSignupBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
