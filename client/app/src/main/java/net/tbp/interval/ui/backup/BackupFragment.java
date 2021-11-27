@@ -38,9 +38,6 @@ public class BackupFragment extends Fragment implements LoaderManager.LoaderCall
 
         // load user database
         LoaderManager.getInstance(this).initLoader(0,null, (LoaderManager.LoaderCallbacks<Cursor>)this);
-
-
-
         return root;
     }
 
@@ -67,9 +64,7 @@ public class BackupFragment extends Fragment implements LoaderManager.LoaderCall
         userCount = cursor.getCount();
 
         if(userCount < 1){
-            // console that user click add new reminder btn
-            Log.d(TAGSQL, "user click add new reminder");
-            // initial intent that will use to call AddNewReminder class to render screen to add new reminder
+            // initial intent that will use to call SigninSignUp class
             Intent informationIntent = new Intent(getContext(), SigninSignUp.class);
             startActivity(informationIntent);
         }
