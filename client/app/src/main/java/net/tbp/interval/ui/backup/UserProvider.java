@@ -28,14 +28,10 @@ public class UserProvider extends ContentProvider {
 
     // index that will store in the database
     public static final String _ID = "_id";
-    public static final String NAME = "name";
-    public static final String DESCRIPTION = "description";
-    public static final String STATUS = "status";
-    public static final String PRIORITY = "priority";
-    public static final String DUEDATE = "duedate";
-    public static final String COMPLETEDDATE = "completeddate";
+    public static final String IDENTIFIER = "identifier";
+    public static final String UID = "uid";
 
-    private static HashMap<String, String> REMINDERS_PROJECTION_MAP;
+    private static HashMap<String, String> USER_PROJECTION_MAP;
     public static final int USER = 1;
     public static final int USER_ID = 2;
 
@@ -51,19 +47,15 @@ public class UserProvider extends ContentProvider {
     // user database name
     static final String DATABASE_NAME = "UserDB";
     // table name
-    static final String USER_TABLE_NAME = "User";
+    static final String USER_TABLE_NAME = "Users";
     // database version
     static final int DATABASE_VERSION = 1;
     // to create user table
     static final String CREATE_DB_TABLE =
             " CREATE TABLE " + USER_TABLE_NAME +
                     " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    " name TEXT NOT NULL, " +
-                    " description TEXT, " +
-                    " status BOOLEAN, " +
-                    " priority INTEGER, "+
-                    " duedate DATE, "+
-                    " completeddate DATE );";
+                    " identifier TEXT NOT NULL, " +
+                    " uid TEXT );";
 
     // Helper class that actually create and manage the provider's underlying data repository
     private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -100,7 +92,7 @@ public class UserProvider extends ContentProvider {
         qb.setTables(USER_TABLE_NAME);
         switch (uriMatcher.match(uri)) {
             case USER:
-                qb.setProjectionMap(REMINDERS_PROJECTION_MAP);
+                qb.setProjectionMap(USER_PROJECTION_MAP);
                 break;
             case USER_ID:
                 qb.appendWhere( _ID + "=" + uri.getPathSegments().get(1));
@@ -130,7 +122,7 @@ public class UserProvider extends ContentProvider {
             case USER_ID:
                 return "vnd.android.cursor.item/vnd.example.user_id";
             default:
-                throw new IllegalArgumentException("Unsoutport URI: " + uri);
+                throw new IllegalArgumentException("Unsupport URI: " + uri);
         }
     }
 
