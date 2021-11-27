@@ -3,47 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusableInTouchMode="true" >
 
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="131dp"
+        android:id="@+id/cloud"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
         android:layout_weight="1"
-        app:srcCompat="@drawable/frame" />
+        android:src="@drawable/interval"
+        app:layout_constraintBottom_toTopOf="@+id/sign_inBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/interval"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="206dp" />
 
     <Button
-        android:id="@+id/sign_in"
+        android:id="@+id/sign_inBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
         android:width="350dp"
         android:height="60dp"
-        android:backgroundTint="#D0E8EF"
+        android:background="@drawable/rounded_corner_sky"
         android:text="Sign In"
-        tools:layout_editor_absoluteX="30dp"
-
-
-        tools:layout_editor_absoluteY="444dp" />
+        app:layout_constraintBottom_toTopOf="@+id/sign_upBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:id="@+id/sign_upBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
         android:width="350dp"
         android:height="60dp"
         android:backgroundTint="#D0E8EF"
+        android:background="@drawable/rounded_corner_sky"
         android:text="Sign Up"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="539dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
