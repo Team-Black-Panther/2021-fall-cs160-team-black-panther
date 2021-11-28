@@ -106,7 +106,7 @@ public class Signup extends Activity {
                                 Log.d(FIREBASETAG, "createUserWithEmail:success.");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Log.d(FIREBASETAG, user.getUid().toString());
-                                signupStatus.setText("Authentication succeeded");
+                                signupStatus.setText("Sign up succeeded.");
                                 values.put(UserProvider.IDENTIFIER, userEmail);
                                 values.put(UserProvider.UID, user.getUid().toString());
                                 Uri uri = getContentResolver().insert(UserProvider.CONTENT_URI, values);
@@ -116,7 +116,7 @@ public class Signup extends Activity {
                                 Log.w(FIREBASETAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(Signup.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                signupStatus.setText("Authentication failed.");
+                                signupStatus.setText("Failed to create user");
                             }
                         }
                     });
