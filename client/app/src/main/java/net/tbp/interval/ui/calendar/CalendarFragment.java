@@ -11,6 +11,7 @@
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.Button;
+    import android.widget.CalendarView;
     import android.widget.TextView;
 
     import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@
         private CalendarViewModel calendarViewModel;
         private FragmentCalendarBinding binding;
         private String TAGSQL = "useraddnewcalendar";
+        private CalendarView calendarView;
 
         public View onCreateView(@NonNull LayoutInflater inflater,
                                  ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +45,7 @@
 
             binding = FragmentCalendarBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
+            calendarView = root.findViewById(R.id.calendar_1);
 
             //  set the page to have the option menu to have the add button
             setHasOptionsMenu(true);
