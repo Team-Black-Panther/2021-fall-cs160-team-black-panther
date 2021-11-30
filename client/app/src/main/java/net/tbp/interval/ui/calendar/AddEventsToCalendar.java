@@ -24,6 +24,7 @@ import java.util.Date;
 public class AddEventsToCalendar extends Activity {
     private Button closeBtn;
     private String[] morningOrAfternoon;
+    //****
     private Date duedate = new Date();
     TextView textViewH;
     TextView textViewM;
