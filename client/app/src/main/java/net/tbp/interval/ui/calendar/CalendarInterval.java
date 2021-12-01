@@ -4,16 +4,16 @@ package net.tbp.interval.ui.calendar;
 import java.util.Date;
 
 // class to manage the variable that relate to the reminder
-public class Calendar {
+public class CalendarInterval {
     private String name;           // name of the task
     private int id;                 // id of task
 //    private String description;     // description of task
-    private Boolean status;         // true if task is completed, false if task have not co,plete
+//    private Boolean status;         // true if task is completed, false if task have not co,plete
 //    private int priority;
     private Date duedate;
 
     // construction of the reminder class
-    public Calendar(int id, String name, String description, Boolean status, int priority, Date duedate ) {
+    public CalendarInterval(int id, String name, Date duedate ) {
         this.id = id;
         this.name = name;
 //        this.description = description;
@@ -52,13 +52,9 @@ public class Calendar {
 //        return description;
 //    }
 //
-    // set status of reminder
-    public void setStatus(Boolean status){
-        this.status = status;
-    }
 
-    // get status of reminder
-    public boolean getStatus(){ return status;}
+
+
 //
 //    // set priority of reminder
 //    public void setPriority(int priority){

@@ -1,47 +1,24 @@
 package net.tbp.interval.ui.calendar;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.ContentProvider;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.interval.R;
 
-import net.tbp.interval.ui.calendar.EditCalendar;
-import net.tbp.interval.ui.calendar.Calendar;
-import net.tbp.interval.ui.calendar.CalendarProvider;
-import net.tbp.interval.ui.calendar.CalendarRecyclerViewAdapter;
-
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<CalendarRecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "CalendarRecyclerView";        // use to debug
-    private List<Calendar> calendarList;                             // list that will store the reminder
+    private List<CalendarInterval> calendarList;                             // list that will store the reminder
     private Context context;
     String TAGSQL = "CalenderSQL";
 
@@ -68,7 +45,7 @@ public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<CalendarRe
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CalendarRecyclerViewAdapter(Context context, List<Calendar> calendarList) {
+    public CalendarRecyclerViewAdapter(Context context, List<CalendarInterval> calendarList) {
         this.calendarList = calendarList;
         this.context = context;
     }
@@ -93,12 +70,12 @@ public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<CalendarRe
         int count = -1;
         for (int i = 0; i < calendarList.size(); i++) {
             // check status reminder if reminder status is false will show in the recyclerView
-            if (!calendarList.get(i).getStatus()) {
+
                 // add count
                 count++;
                 // to make the recyclerView show the first reminder that has staus false
                 if (count == position) {
-                    Calendar row = calendarList.get(position);
+                    CalendarInterval row = calendarList.get(position);
                     // set recyclerView name
                     holder.name.setText(calendarList.get(i).getName());
                     // set recyclerView checkbox
@@ -113,58 +90,24 @@ public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<CalendarRe
 
                     // will use to check that user mark it as complete it
                     int finalCount = i;
-                    // add listener to checkbox
-//                    holder.checkBox.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            // uer check reminder as completed
-//                            if (holder.checkBox.isChecked()) {
-//                                // change status of reminder to true
-//                                calendarList.get(finalCount).setStatus(true);
-//
-//                                // update data to sql
-//                                ContentValues values = new ContentValues();
-//                                // name that user will add to the database
-//                                values.put(CalendarProvider.STATUS, true);
-//                                context.getContentResolver().update(ReminderProvider.CONTENT_URI, values, CalendarProvider._ID + "="
-//                                        + calendarList.get(finalCount).getReminderId(), null);
-//                                // update data
-//                                notifyDataSetChanged();
-//                            }
-//                        }
-//                    });
 
-                    // this function will add new intent to pop up to show edit reminder
-                    holder.layout.setOnClickListener(new View.OnClickListener() {
-                        // user select a row
-                        @Override
-                        public void onClick(View view) {
-                            Log.d(TAG, "select calendar to show: " + (position) + " " + (row.getName()));
-                            // initial intent that will use to call EditReminder class to render screen to add new reminder
-                            Intent editCalendarIntent = new Intent(context, EditCalendar.class);
-                            // data that will use to sendData to EditReminder.class
-                            editCalendarIntent.putExtra("id", calendarList.get(finalCount).getCalendarId());
-                            editCalendarIntent.putExtra("name", calendarList.get(finalCount).getName());
-//                            editCalendarIntent.putExtra("description", calendarList.get(finalCount).getDescription());
-//                            editCalendarIntent.putExtra("priority", calendarList.get(finalCount).getPriority());
-                            editCalendarIntent.putExtra("dueDate", calendarList.get(finalCount).getDuedate().getTime());
-                            context.startActivity(editCalendarIntent);
-                        }
-                    });
+
+
                 }
-            }
+
         }
     }
 
+    // ***************
     // function to count the total number of recyclerView that has incompleted status
     @Override
     public int getItemCount() {
         int count = 0;
         if (calendarList.size() >= 1) {
             for (int i = 0; i < calendarList.size(); i++) {
-                if (!calendarList.get(i).getStatus()) {
+
                     count++;
-                }
+
             }
         }
         Log.d(TAG, String.valueOf(count));
