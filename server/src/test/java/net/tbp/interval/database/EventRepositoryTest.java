@@ -19,6 +19,7 @@ import net.tbp.interval.backup.UserProfile;
 
 @DataJpaTest
 public class EventRepositoryTest {
+	/*
 	@Autowired
 	private EventRepository eventRepo;
 
@@ -84,5 +85,6 @@ public class EventRepositoryTest {
 	void tearDown() {
 		eventRepo.deleteAll();
 	}
+	*/
 
 }

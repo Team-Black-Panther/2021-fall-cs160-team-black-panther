@@ -12,6 +12,7 @@ import net.tbp.interval.database.MainController;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class IntervalApplicationTests {
 
+	/*
 	@Autowired
 	private MainController controller;
 
@@ -20,4 +21,5 @@ class IntervalApplicationTests {
 		assertThat(controller).isNotNull();
 	}
 
+	 */
 }
